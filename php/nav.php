@@ -1,5 +1,5 @@
 <?php
-    echo <!-- Navigation -->
+    echo' <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -36,9 +36,18 @@
                         <a href="dash.html">Acessar</a>
                     </li>
                 </ul>
+                  <form class="navbar-form navbar-right" role="search" actio="login.php">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="username" placeholder="Usuário">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="password" placeholder="Senha">
+                    </div>
+                    <button type="submit" class="btn btn-default">Sign In</button>
+                </form>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
-    </nav>;
+    </nav>';
     ?>

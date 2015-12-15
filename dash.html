@@ -67,9 +67,39 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                    <h3>Imagens do Menu Principal</h3>
+                    <h3>Imagens do Slider</h3>
+                    <form action="upload-slider.php" name="registreimo" id="imoForm" novalidate>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Imagem 1 Slider</label>
+                                <input type="file" name="file" id="file">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Imagem 2 Slider</label>
+                                <input type="file" name="file" id="file">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Imagem 3 Slider</label>
+                                <input type="file" name="file" id="file">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="success"></div>
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <button type="submit" class="btn btn-success btn-lg">Cadastrar</button>
+                            </div>
+                        </div>
+                    </form>
                     <h3>Cadastrar Imóvel</h3>
-                    <form action="uploaded.php" name="registreimo" id="imoForm" novalidate>
+                    <form action="upload-imo.php" name="registreimo" id="imoForm" novalidate>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Código do Anúncio</label>
@@ -389,7 +419,14 @@
                             </div>
                         </div>
 
-                        
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Anexar Fotos</label>
+                                <input type="file" name="file" id="file" multiple>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+
 
                         <br>
                         <div id="success"></div>
@@ -402,54 +439,5 @@
                 </div>
             </div>
 
-             <!-- Footer -->
-    <footer class="text-center">
-        <div class="footer-above">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-col col-md-4">
-                        <h3>Onde Estamos</h3>
-                        <p>Av. Guaíba, 2941<br>Porto Alegre, RS 91900-420</p>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>Around the Web</h3>
-                        <ul class="list-inline">
-                            <li>
-                                <a href="https://www.facebook.com/hubiweb/" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-                            </li>
-                            <!--
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
-                            </li>
-                            -->
-                        </ul>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>About Freelancer</h3>
-                        <p>Freelance is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-below">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        Copyright &copy; HubiW 2015
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-</body>
+    </body>
 </html>

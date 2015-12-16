@@ -49,5 +49,5 @@
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
-    </nav>';
+    </nav>' ;
     ?>

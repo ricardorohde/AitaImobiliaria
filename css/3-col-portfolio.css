@@ -1,5 +1,5 @@
 /*!
- * Start Bootstrap - Shop Item HTML Template (http://startbootstrap.com)
+ * Start Bootstrap - 3 Col Portfolio HTML Template (http://startbootstrap.com)
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
@@ -8,26 +8,11 @@ body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
-.thumbnail img {
-    width: 100%;
-}
-
-.ratings {
-    padding-right: 10px;
-    padding-left: 10px;
-    color: #d17581;
-}
-
-.thumbnail {
-    padding: 0;
-}
-
-.thumbnail .caption-full {
-    padding: 9px;
-    color: #333;
+.portfolio-item {
+    margin-bottom: 25px;
 }
 
 footer {
-    margin: px 0;
+    margin: 0px 0;
 	background-color: #000000;
 }

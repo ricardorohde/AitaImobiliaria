@@ -1,74 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Aita Imóveis</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/shop-homepage.css" rel="stylesheet">
-
-	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
+<?php
+	include "header.php";
+?>
 
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html"><img src="img/simboloaitaimoveis.png" alt=""></a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="about.html">Sobre Nós</a>
-                    </li>
-                    <li>
-                        <a href="">Imóveis</a>
-                    </li>
-                    <li>
-                        <a href="contact.html">Contato</a>
-                    </li>
-                    <li>
-                        <a href="dash.html">Acessar</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+    <?php
+		include "nav.php";
+	?>
 
     <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
                     <h3>Imagens do Slider</h3>
-                    <form action="upload-slider.php" name="registreimo" id="imoForm" novalidate>
+                    <form action="upload-slider.php" name="registreimo" method="post" id="imoForm" novalidate>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Imagem 1 Slider</label>
@@ -99,7 +47,7 @@
                         </div>
                     </form>
                     <h3>Cadastrar Imóvel</h3>
-                    <form action="upload-imo.php" name="registreimo" id="imoForm" novalidate>
+                    <form action="upload-imo.php" name="registreimo" enctype="multipart/form-data" method="post" id="imoForm" novalidate>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Código do Anúncio</label>
@@ -110,16 +58,16 @@
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Transação</label>
-                                 <label class="checkbox-inline"><input type="checkbox" value="V">Venda</label>
-                                 <label class="checkbox-inline"><input type="checkbox" value="L">Locação</label>
-                                 <label class="checkbox-inline"><input type="checkbox" value="T">Locação Temporada</label>
+                                 <label class="checkbox-inline"><input type="checkbox" name="trans[]" id="trans" value="V">Venda</label>
+                                 <label class="checkbox-inline"><input type="checkbox" name="trans[]" id="trans" value="L">Locação</label>
+                                 <label class="checkbox-inline"><input type="checkbox" name="trans[]" id="trans" value="T">Locação Temporada</label>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Tipo de Imóvel</label>
-                                <select class="form-control" id="sel1">
+                                <select class="form-control" id="sel1" name="t_imo">
                                     <option>Selecione</option>
                                     <option>Apartamento</option>
                                     <option>Kitchenette/Conjugado</option>
@@ -153,7 +101,7 @@
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Subtipo de Imóvel</label>
-                               <select class="form-control" id="sel1">
+                               <select class="form-control" id="sel1" name="sbt_imo">
                                     <option>Selecione</option>
                                </select>
                                 <p class="help-block text-danger"></p>
@@ -162,7 +110,7 @@
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Categoria</label>
-                                <select class="form-control" id="sel1">
+                                <select class="form-control" id="sel1" name="cat">
                                     <option>Selecione</option>
                                </select>
                                 <p class="help-block text-danger"></p>
@@ -171,14 +119,14 @@
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>CEP</label>
-                                <input type="text" class="form-control" placeholder="CEP" id="cep" required pattern="\d{5}-?\d{3}"  data-mask="99999-999" required data-validation-required-message="Por favor insira o CEP.">
+                                <input type="text" class="form-control" placeholder="CEP" name="cep" id="cep" required pattern="\d{5}-?\d{3}"  data-mask="99999-999" required data-validation-required-message="Por favor insira o CEP.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Estado</label>
-                                <select class="form-control" id="sel1">
+                                <select class="form-control" id="sel1" name="estado">
                                     <option>Selecione</option>
                                </select>
                                 <p class="help-block text-danger"></p>
@@ -187,7 +135,7 @@
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Cidade</label>
-                                <select class="form-control" id="sel1">
+                                <select class="form-control" id="sel1" name="cidade">
                                     <option>Selecione</option>
                                </select>
                                 <p class="help-block text-danger"></p>
@@ -196,7 +144,7 @@
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Bairro</label>
-                                <select class="form-control" id="sel1">
+                                <select class="form-control" id="sel1" name="bairro">
                                     <option>Selecione</option>
                                </select>
                                 <p class="help-block text-danger"></p>
@@ -205,63 +153,63 @@
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Endereço</label>
-                                <input type="text" class="form-control" placeholder="Endereço" id="endereco" required data-validation-required-message="Por favor insira o Endereço.">
+                                <input type="text" class="form-control" placeholder="Endereço" name="endereco" id="endereco" required data-validation-required-message="Por favor insira o Endereço.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Número</label>
-                                <input type="text" class="form-control" placeholder="Número" id="numero" required data-validation-required-message="Por favor insira o Número.">
+                                <input type="text" class="form-control" placeholder="Número" name="numero" id="numero" required data-validation-required-message="Por favor insira o Número.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Complemento</label>
-                                <input type="text" class="form-control" placeholder="Complemento" id="Complemento" required data-validation-required-message="Por favor insira o Complemento.">
+                                <input type="text" class="form-control" placeholder="Complemento" name="complemento" id="Complemento" required data-validation-required-message="Por favor insira o Complemento.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Descrição da Localização</label>
-                                <textarea rows="5" class="form-control" placeholder="Descrição da Localização" id="descricao" required data-validation-required-message="Por favor insira a Descrição da Localização."></textarea>
+                                <textarea rows="5" class="form-control" placeholder="Descrição da Localização" name="desc_localizacao" id="descricao" required data-validation-required-message="Por favor insira a Descrição da Localização."></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Área Útil</label>
-                                <input type="text" class="form-control" placeholder="Área Útil" id="areautil" required data-validation-required-message="Por favor insira o Área Útil.">
+                                <input type="text" class="form-control" placeholder="Área Útil" name="area_util" id="areautil" required data-validation-required-message="Por favor insira o Área Útil.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Área Total</label>
-                                <input type="text" class="form-control" placeholder="Área Total" id="areatotal" required data-validation-required-message="Por favor insira o Área Total.">
+                                <input type="text" class="form-control" placeholder="Área Total" name="area_total" id="areatotal" required data-validation-required-message="Por favor insira o Área Total.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Valor total de venda</label>
-                                <input type="text" class="form-control" placeholder="Valor total de venda" id="valortotal" required data-validation-required-message="Por favor insira o Valor total de venda.">
+                                <input type="text" class="form-control" placeholder="Valor total de venda" name="valor_total_venda" id="valortotal" required data-validation-required-message="Por favor insira o Valor total de venda.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Valor de entrada</label>
-                                <input type="text" class="form-control" placeholder="Valor de entrada" id="entrada" required data-validation-required-message="Por favor insira o Valor de entrada.">
+                                <input type="text" class="form-control" placeholder="Valor de entrada" name="valor_entrada" id="entrada" required data-validation-required-message="Por favor insira o Valor de entrada.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Mensais a partir de</label>
-                                <input type="text" class="form-control" placeholder="Mensais a partir de" id="mensais" required data-validation-required-message="Por favor insira as Mensais a partir de.">
+                                <input type="text" class="form-control" placeholder="Mensais a partir de" name="mensais" id="mensais" required data-validation-required-message="Por favor insira as Mensais a partir de.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -269,13 +217,13 @@
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Condições comerciais</label>
                                     <div class="checkbox">
-                                        <label><input type="checkbox" value="A">Aceita Permuta</label>
+                                        <label><input type="checkbox" name="cond[]" id="cond" value="A">Aceita Permuta</label>
                                     </div>
                                     <div class="checkbox">
-                                        <label><input type="checkbox" value="E">Entrada Facilitada</label>
+                                        <label><input type="checkbox" name="cond[]" id="cond" value="E">Entrada Facilitada</label>
                                     </div>
                                     <div class="checkbox disabled">
-                                        <label><input type="checkbox" value="I">Imóvel com dívida</label>
+                                        <label><input type="checkbox" name="cond[]" id="cond" value="I">Imóvel com dívida</label>
                                     </div>
                                 <p class="help-block text-danger"></p>
                             </div>
@@ -283,21 +231,21 @@
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Demais condições comerciais</label>
-                                <textarea rows="5" class="form-control" placeholder="Demais condições comerciais" id="demaiscond" required data-validation-required-message="Por favor insira as Demais condições comerciais."></textarea>
+                                <textarea rows="5" class="form-control" placeholder="Demais condições comerciais" name="demais_cond" id="demaiscond" required data-validation-required-message="Por favor insira as Demais condições comerciais."></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Valor do Aluguel</label>
-                                <input type="text" class="form-control" placeholder="Valor do Aluguel" id="aluguel" required data-validation-required-message="Por favor insira o Valor do Aluguel.">
+                                <input type="text" class="form-control" placeholder="Valor do Aluguel" name="aluguel" id="aluguel" required data-validation-required-message="Por favor insira o Valor do Aluguel.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Diária a partir de</label>
-                                <input type="text" class="form-control" placeholder="Diária a partir de" id="diaria" required data-validation-required-message="Por favor insira a Diária a partir de.">
+                                <input type="text" class="form-control" placeholder="Diária a partir de" name="diaria" id="diaria" required data-validation-required-message="Por favor insira a Diária a partir de.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -312,105 +260,105 @@
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Valor do condomínio</label>
-                                <input type="text" class="form-control" placeholder="Valor do condomínio" id="condominio" required data-validation-required-message="Por favor insira o Valor do condomínio.">
+                                <input type="text" class="form-control" placeholder="Valor do condomínio" name="valor_cond" id="condominio" required data-validation-required-message="Por favor insira o Valor do condomínio.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Valor do IPTU</label>
-                                <input type="text" class="form-control" placeholder="Valor do IPTU" id="iptu" required data-validation-required-message="Por favor insira o Valor do IPTU.">
+                                <input type="text" class="form-control" placeholder="Valor do IPTU" name="iptu" id="iptu" required data-validation-required-message="Por favor insira o Valor do IPTU.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Nome Empreendimento</label>
-                                <input type="text" class="form-control" placeholder="Nome Empreendimento" id="nome" required data-validation-required-message="Por favor insira o Nome Empreendimento.">
+                                <input type="text" class="form-control" placeholder="Nome Empreendimento" name="nome" id="nome" required data-validation-required-message="Por favor insira o Nome Empreendimento.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Capacidade de Pessoas</label>
-                                <input type="text" class="form-control" placeholder="Capacidade de Pessoas" id="capacidade" required data-validation-required-message="Por favor insira o Capacidade de Pessoas.">
+                                <input type="text" class="form-control" placeholder="Capacidade de Pessoas" name="capacidade" id="capacidade" required data-validation-required-message="Por favor insira o Capacidade de Pessoas.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Nº de Andares</label>
-                                <input type="text" class="form-control" placeholder="Nº de Andares" id="andares" required data-validation-required-message="Por favor insira o Nº de Andares.">
+                                <input type="text" class="form-control" placeholder="Nº de Andares" name="andares" id="andares" required data-validation-required-message="Por favor insira o Nº de Andares.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Nº de unidades por andar</label>
-                                <input type="text" class="form-control" placeholder="Nº de unidades por andar" id="unidade" required data-validation-required-message="Por favor insira o Nº de unidades por andar.">
+                                <input type="text" class="form-control" placeholder="Nº de unidades por andar" name="unidades" id="unidade" required data-validation-required-message="Por favor insira o Nº de unidades por andar.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Nº de elevadores</label>
-                                <input type="text" class="form-control" placeholder="Nº de elevadores" id="elevadores" required data-validation-required-message="Por favor insira o Nº de elevadores.">
+                                <input type="text" class="form-control" placeholder="Nº de elevadores" name="elevadores" id="elevadores" required data-validation-required-message="Por favor insira o Nº de elevadores.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Nº de banheiros</label>
-                                <input type="text" class="form-control" placeholder="Nº de banheiros" id="banheiros" required data-validation-required-message="Por favor insira o Nº de banheiros.">
+                                <input type="text" class="form-control" placeholder="Nº de banheiros" name="banheiros" id="banheiros" required data-validation-required-message="Por favor insira o Nº de banheiros.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Nº de salas</label>
-                                <input type="text" class="form-control" placeholder="Nº de salas" id="salas" required data-validation-required-message="Por favor insira o Nº de salas.">
+                                <input type="text" class="form-control" placeholder="Nº de salas" name="salas" id="salas" required data-validation-required-message="Por favor insira o Nº de salas.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Quartos/Dts</label>
-                                <input type="text" class="form-control" placeholder="Quartos/Dts" id="quartos" required data-validation-required-message="Por favor insira o Quartos/Dts.">
+                                <input type="text" class="form-control" placeholder="Quartos/Dts" name="quartos" id="quartos" required data-validation-required-message="Por favor insira o Quartos/Dts.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Suítes</label>
-                                <input type="text" class="form-control" placeholder="Suítes" id="suites" required data-validation-required-message="Por favor insira as Suítes.">
+                                <input type="text" class="form-control" placeholder="Suítes" name="suites" id="suites" required data-validation-required-message="Por favor insira as Suítes.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Vagas na Garagem</label>
-                                <input type="text" class="form-control" placeholder="Vagas na Garagem" id="vagas" required data-validation-required-message="Por favor insira as Vagas na Garagem.">
+                                <input type="text" class="form-control" placeholder="Vagas na Garagem" name="vagas" id="vagas" required data-validation-required-message="Por favor insira as Vagas na Garagem.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Ano construção</label>
-                                <input type="text" class="form-control" placeholder="Ano construção" id="ano" required data-validation-required-message="Por favor insira o Ano construção.">
+                                <input type="text" class="form-control" placeholder="Ano construção" name="ano" id="ano" required data-validation-required-message="Por favor insira o Ano construção.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Texto do Anúncio</label>
-                                <textarea rows="5" class="form-control" placeholder="Texto do Anúncio" id="texto" required data-validation-required-message="Por favor insira seu Texto do Anúncio."></textarea>
+                                <textarea rows="5" class="form-control" placeholder="Texto do Anúncio" name="texto" id="texto" required data-validation-required-message="Por favor insira seu Texto do Anúncio."></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Status</label>
-                                <select class="form-control" id="sel1">
+                                <select class="form-control" id="sel1" name="status">
                                     <option>Selecione</option>
                                     <option>Ativo</option>
                                     <option>Inativo</option>
@@ -422,7 +370,7 @@
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Anexar Fotos</label>
-                                <input type="file" name="file" id="file" multiple>
+                                <input type="file" name="my_file[]" id="file" multiple>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -432,12 +380,16 @@
                         <div id="success"></div>
                         <div class="row">
                             <div class="form-group col-xs-12">
-                                <button type="submit" class="btn btn-success btn-lg">Cadastrar</button>
+                                <button type="submit" value="upload" class="btn btn-success btn-lg">Cadastrar</button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
+			
+			<?php
+				include "footer.php"
+			?>
 
     </body>
 </html>

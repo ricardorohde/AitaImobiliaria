@@ -5,7 +5,7 @@ reg_date TIMESTAMP
 );
 
 CREATE TABLE imoveis(
-id INT(3) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+id INT(3) AUTO_INCREMENT PRIMARY KEY,
 transacao VARCHAR(1),
 tp_imovel VARCHAR(1),
 sb_tp_imovel VARCHAR(1),
@@ -43,7 +43,7 @@ garagens INT(3),
 ano_contrucao INT(4),
 texto BLOB,
 status VARCHAR(1),
-click INT(6) UNSIGNED AUTO_INCREMENT,
+click INT(6) AUTO_INCREMENT,
 dir VARCHAR(255)
 );
 

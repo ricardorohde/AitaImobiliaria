@@ -1,12 +1,10 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 
-#Informações para salvar arquivo
-$uploaddir = '/';
-#$myFile = $_FILES['my_file'];
-#$fileCount = count($myFile["name"]);
+print_r($_POST);
+print_r($_FILES);
 
-#Informações para salvar dados
+#CRIA VARIÁVEIS COM OS DADOS INFORMADOS NO FORMULÁRIO
 $transacao = isset($_POST['trans'][0]) ? $_POST['trans'][0]: NULL;
 $tp_imovel = isset($_POST['t_imo']) ? $_POST['t_imo'] : NULL; 
 $sb_tp_imovel = isset($_POST['sbt_imo']) ? $_POST['sbt_imo'] : NULL;
@@ -14,8 +12,8 @@ $categoria = isset($_POST['cat']) ? $_POST['cat'] : NULL;
 $cep = isset($_POST['cep']) ? $_POST['cep'] : NULL;
 $estado = isset($_POST['estado']) ? $_POST['estado'] : NULL;
 $cidade = isset($_POST['cidade']) ? $_POST['cidade'] : NULL;
-$bairro = isset($_POST['bairro']) ? utf8_encode($_POST['bairro']) : NULL;
-$endereco = isset($_POST['endereco']) ? utf8_encode($_POST['endereco']) : NULL;
+$bairro = isset($_POST['bairro']) ? ($_POST['bairro']) : NULL;
+$endereco = isset($_POST['endereco']) ? ($_POST['endereco']) : NULL;
 $numero = isset($_POST['numero']) ? $_POST['numero'] : NULL;
 $complemento = isset($_POST['complemento']) ? $_POST['complemento'] : NULL;
 $descricao = isset($_POST['desc_localizacao']) ? $_POST['desc_localizacao'] :NULL;
@@ -45,8 +43,7 @@ $ano_contrucao = isset($_POST['ano']) ? $_POST['ano']  :NULL;
 $texto = isset($_POST['texto']) ? $_POST['texto']  :NULL;
 $status = isset($_POST['status']) ? $_POST['status']  :NULL;
 $zap = isset($_POST['zap']) ? $_POST['zap']  :NULL;
-$qt_fotos = isset($_POST['qt_fotos']) ? $_POST['qt_fotos']  :NULL;
-$dir = $uploaddir.$endereco.$complemento;
+$dir = $endereco.$numero.$complemento;
 $AndarInteiro = isset($_POST['AndarInteiro']) ? $_POST['AndarInteiro']  :NULL;
 $ArCondicionado = isset($_POST['ArCondicionado']) ? $_POST['ArCondicionado']  :NULL;
 $ArmarioCozinha = isset($_POST['ArmarioCozinha']) ? $_POST['ArmarioCozinha']  :NULL;
@@ -87,187 +84,221 @@ $Sauna = isset($_POST['Sauna']) ? $_POST['Sauna']  :NULL;
 $Vestiario = isset($_POST['Vestiario']) ? $_POST['Vestiario']  :NULL;
 
 
-#Iniciando conexão com o banco de dados
+#INICIA CONEXÃO COM O BANCO DE DADOS
 include "db-conection.php";
-#Salvando no banco de dados
+#EXECUTA QUERY PARA SALVAR DADOS NO BANCO DE DADOS
 $dadossalvos = False;
-$result = mysqli_query($conexao,"INSERT INTO imoveis 
-(transacao,
-tp_imovel,
-sb_tp_imovel,
-categoria,
-cep,
-estado,
-cidade,
-bairro,
-endereco,
-numero,
-complemento,
-descricao,
-a_util,
-a_total,
-v_t_venda,
-v_entrada,
-mensais,
-cond_com,
-d_cond,
-V_aluguel,
-diaria,
-isento,
-v_cond,
-v_iptu,
-nm_empr,
-capacidade,
-andares,
-un_andar,
-elevadores,
-banheiros,
-salas,
-quartos,
-suites,
-garagens,
-ano_contrucao,
-texto,
-status,
-click,
-dir,
-qt_fotos,
-zap,
-AndarInteiro,
-ArCondicionado,
-ArmarioCozinha,
-ArmarioEmbutido,
-Closet,
-DepositoPrivadonoSubsolo,
-Despensa,
-Escritorio,
-EstudaPermuta,
-Lareira,
-Lavabo,
-MeioAndar,
-Mobiliado,
-QuartoWCEmpregada,
-SalaAlmoco,
-SalaJantar,
-Varanda,
-WCEmpregada,
-PisoElevado,
-CampodeFutebol,
-ChildrenCare,
-Churrasqueira,
-Copa,
-EntradadeCaminhoes,
-Esquina,
-EstacionamentoVisitante,
-Frenteparaomar,
-Hidromassagem,
-Piscina,
-Playground,
-QuadradeSquash,
-QuadradeTenis,
-QuadraPoliesportiva,
-SaladeGinastica,
-SalaoFestas,
-SalaoJogos,
-Sauna,
-Vestiario) 
-VALUES 
-('$transacao',
-'$tp_imovel',
-'$sb_tp_imovel',
-'$categoria',
-'$cep',
-'$estado',
-'$cidade',
-'$bairro',
-'$endereco',
-'$numero',
-'$complemento',
-'$descricao',
-'$a_util',
-'$a_total',
-'$v_t_venda',
-'$v_entrada',
-'$mensais',
-'$cond_com',
-'$d_cond',
-'$V_aluguel',
-'$diaria',
-'$isento',
-'$v_cond',
-'$v_iptu',
-'$nm_empr',
-'$capacidade',
-'$andares',
-'$un_andar',
-'$elevadores',
-'$banheiros',
-'$salas',
-'$quartos',
-'$suites',
-'$garagens',
-'$ano_contrucao',
-'$texto',
-'$status',
-0,
-'$dir',
-'$qt_fotos',
-'$zap',
-'$AndarInteiro',
-'$ArCondicionado',
-'$ArmarioCozinha',
-'$ArmarioEmbutido',
-'$Closet',
-'$DepositoPrivadonoSubsolo',
-'$Despensa',
-'$Escritorio',
-'$EstudaPermuta',
-'$Lareira',
-'$Lavabo',
-'$MeioAndar',
-'$Mobiliado',
-'$QuartoWCEmpregada',
-'$SalaAlmoco',
-'$SalaJantar',
-'$Varanda',
-'$WCEmpregada',
-'$PisoElevado',
-'$CampodeFutebol',
-'$ChildrenCare',
-'$Churrasqueira',
-'$Copa',
-'$EntradadeCaminhoes',
-'$Esquina',
-'$EstacionamentoVisitante',
-'$Frenteparaomar',
-'$Hidromassagem',
-'$Piscina',
-'$Playground',
-'$QuadradeSquash',
-'$QuadradeTenis',
-'$QuadraPoliesportiva',
-'$SaladeGinastica',
-'$SalaoFestas',
-'$SalaoJogos',
-'$Sauna',
-'$Vestiario');") or die(mysql_error());
-print_r($result);
-$row_cnt = mysqli_affected_rows($conexao);
-if($row_cnt>0){
-$dadossalvos = True;	
+$query_imoveis = "INSERT INTO imoveis 
+							(transacao,
+							tp_imovel,
+							sb_tp_imovel,
+							categoria,
+							cep,
+							estado,
+							cidade,
+							bairro,
+							endereco,
+							numero,
+							complemento,
+							descricao,
+							a_util,
+							a_total,
+							v_t_venda,
+							v_entrada,
+							mensais,
+							cond_com,
+							d_cond,
+							V_aluguel,
+							diaria,
+							isento,
+							v_cond,
+							v_iptu,
+							nm_empr,
+							capacidade,
+							andares,
+							un_andar,
+							elevadores,
+							banheiros,
+							salas,
+							quartos,
+							suites,
+							garagens,
+							ano_contrucao,
+							texto,
+							status,
+							click,
+							zap) 
+							VALUES 
+							('$transacao',
+							'$tp_imovel',
+							'$sb_tp_imovel',
+							'$categoria',
+							'$cep',
+							'$estado',
+							'$cidade',
+							'$bairro',
+							'$endereco',
+							'$numero',
+							'$complemento',
+							'$descricao',
+							'$a_util',
+							'$a_total',
+							'$v_t_venda',
+							'$v_entrada',
+							'$mensais',
+							'$cond_com',
+							'$d_cond',
+							'$V_aluguel',
+							'$diaria',
+							'$isento',
+							'$v_cond',
+							'$v_iptu',
+							'$nm_empr',
+							'$capacidade',
+							'$andares',
+							'$un_andar',
+							'$elevadores',
+							'$banheiros',
+							'$salas',
+							'$quartos',
+							'$suites',
+							'$garagens',
+							'$ano_contrucao',
+							'$texto',
+							'$status',
+							0,
+							'$zap');";
+print_r(" Query Imoveis: ".$query_imoveis);
+$result_imoveis = mysqli_query($conexao,$query_imoveis) or die(mysql_error());
+print_r(" Result Imoives: ".$result_imoveis);
+$imoid = mysqli_insert_id($conexao);
+print_r(" imoid: ".$imoid);
+$query_imoveis_caracteristicas = "INSERT INTO caracteristicas_imovel
+											(AndarInteiro,
+											ArCondicionado,
+											ArmarioCozinha,
+											ArmarioEmbutido,
+											Closet,
+											DepositoPrivadonoSubsolo,
+											Despensa,
+											Escritorio,
+											EstudaPermuta,
+											Lareira,
+											Lavabo,
+											MeioAndar,
+											Mobiliado,
+											QuartoWCEmpregada,
+											SalaAlmoco,
+											SalaJantar,
+											Varanda,
+											WCEmpregada,
+											PisoElevado,
+											CampodeFutebol,
+											ChildrenCare,
+											Churrasqueira,
+											Copa,
+											EntradadeCaminhoes,
+											Esquina,
+											EstacionamentoVisitante,
+											Frenteparaomar,
+											Hidromassagem,
+											Piscina,
+											Playground,
+											QuadradeSquash,
+											QuadradeTenis,
+											QuadraPoliesportiva,
+											SalaodeGinastica,
+											SalaoFestas,
+											SalaoJogos, 
+											Sauna,
+											Vestiario,
+											imo)
+											VALUES
+											('$AndarInteiro',
+											'$ArCondicionado',
+											'$ArmarioCozinha',
+											'$ArmarioEmbutido',
+											'$Closet',
+											'$DepositoPrivadonoSubsolo',
+											'$Despensa',
+											'$Escritorio',
+											'$EstudaPermuta',
+											'$Lareira',
+											'$Lavabo',
+											'$MeioAndar',
+											'$Mobiliado',
+											'$QuartoWCEmpregada',
+											'$SalaAlmoco',
+											'$SalaJantar',
+											'$Varanda',
+											'$WCEmpregada',
+											'$PisoElevado',
+											'$CampodeFutebol',
+											'$ChildrenCare',
+											'$Churrasqueira',
+											'$Copa',
+											'$EntradadeCaminhoes',
+											'$Esquina',
+											'$EstacionamentoVisitante',
+											'$Frenteparaomar',
+											'$Hidromassagem',
+											'$Piscina',
+											'$Playground',
+											'$QuadradeSquash',
+											'$QuadradeTenis',
+											'$QuadraPoliesportiva',
+											'$SaladeGinastica',
+											'$SalaoFestas',
+											'$SalaoJogos', 
+											'$Sauna',
+											'$Vestiario',
+											'$imoid');";
+print_r(" Query Caracteristicas: ".$query_imoveis_caracteristicas);
+$result_caracteristicas_imoveis = mysqli_query($conexao,$query_imoveis_caracteristicas) or die(mysql_error());
+print_r(" Result Caracteristicas: ".$result_caracteristicas_imoveis);
+#VERIFICA SE FOI SALVO OS DADOS DO IMÓVEL NO BANCO DE DADOS
+if($result_imoveis && $result_caracteristicas_imoveis){
+	$dadossalvos = True;
 }
-#salvado no diretório
 
-$createddir = mkdir($endereco.$complemento,777);
-#$upload  = false;
-#for ($i = 0; $i < $fileCount; $i++) {
-#		$filename = $myFile["tmp_name"][$i];
-#		$upload  = move_uploaded_file($filename,'/'.$nm_empr);
-#		print_r($upload);
-#}		
+#CRIA DIRETÓRIO
+$dirformated = iconv("UTF-8","Windows-1252",$dir);
+$createddir = mkdir($dirformated,777);
+$upload  = false;
 
-if($dadossalvos){
-header('Location: index.php');	
+#EXECUTA O LAÇO PARA AS 'N' IMAGENS INSERIDAS NO UPLOAD
+foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
+    $file_name = $_FILES['files']['name'][$key];
+    $file_size =$_FILES['files']['size'][$key];
+    $file_tmp =$_FILES['files']['tmp_name'][$key];
+    $file_type=$_FILES['files']['type'][$key];
+
+    #SALVA INFORMAÇÕES DAS IMAGENS NO BANCO DE DADOS
+    $query_imagens_imoveis = "INSERT INTO imagens_imo
+											(id,
+											name,
+											dir,
+											imo)
+											VALUES
+											('$key',
+											'$file_name',
+											'$dir',
+											'$imoid')";
+	print_r(" Query Imagens: ".$query_imagens_imoveis);
+	$result_imagens = mysqli_query($conexao,$query_imagens_imoveis) or die(mysql_error());
+	print_r(" Result_Imagens: ".$result_imagens);
+    
+
+   
+
+    #MOVE IMAGEM UPLOAD PARA DIRETÓRIO ESPECIFICADO
+    $upload = move_uploaded_file($file_tmp, $_SERVER['DOCUMENT_ROOT'].'AitaImobiliaria/'.$dirformated.'/'.$file_name);
+    print_r(" Upload: ".$upload);
+    
+}
+
+if($dadossalvos && $upload){
+	header('Location: index.php');	
 }
 
 

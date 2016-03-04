@@ -1,82 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <?php
-	include "header.php";
+    include "head.php";
 ?>
-
 <body>
-
-    <!-- Navigation -->
+<div id="main_container">
+  <?php
+        include "header.php";
+  ?>
+  <div id="main_content">
     <?php
-		include "nav.php";
-	?>
-
-    <!-- Form -->
-   <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                    <h3>Entre em Contato</h3>
-                    <form action="contact_me.php" name="sentMessage" method="post" id="contactForm" novalidate>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Nome</label>
-                                <input type="text" class="form-control" placeholder="Nome" id="name" name="name" required data-validation-required-message="Por favor insira seu nome.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Email</label>
-                                <input type="email" class="form-control" placeholder="Email" id="email" name="email" required data-validation-required-message="Por favor insira seu email.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Telefone</label>
-                                <input type="tel" class="form-control" placeholder="Telefone" id="phone" name="phone" required data-validation-required-message="Por favor insira seu telefone.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Assunto</label>
-                                <input type="text" class="form-control" placeholder="Assunto" id="subject" name="subject" required data-validation-required-message="Por favor insira o assunto.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Mensagem</label>
-                                <textarea rows="5" class="form-control" placeholder="Mensagem" id="message" name="message" required data-validation-required-message="Por favor insira sua mensagem."></textarea>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <br>
-                        <div id="success"></div>
-                        <div class="row">
-                            <div class="form-group col-xs-12">
-                                <button type="submit" class="btn btn-success btn-lg">Enviar</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
- <div class="container">
-
-        
-
+          include "colum1.php";
+    ?>
+    <!-- end of column one -->
+    <?php
+          include "colum2.php";
+    ?>
+    <!-- end of column two -->
+    <?php
+          include "colum3.php";
+    ?>
+    <!-- end of column three -->
+    <div class="column4">
+      <div class="title">Contato</div>
+      <div class="contact_tab">
+        <div class="form_contact">
+          <div class="form_row_contact">
+            <label class="left">Nome: </label>
+            <input type="text" class="form_input_contact"/>
+          </div>
+          <div class="form_row_contact">
+            <label class="left">Email: </label>
+            <input type="text" class="form_input_contact"/>
+          </div>
+          <div class="form_row_contact">
+            <label class="left">Telefone: </label>
+            <input type="text" class="form_input_contact"/>
+          </div>
+          <div class="form_row_contact">
+            <label class="left">Estado: </label>
+            <input type="text" class="form_input_contact"/>
+          </div>
+          <div class="form_row_contact">
+            <label class="left">Mensagem: </label>
+            <textarea name="" rows="" cols="" ></textarea>
+          </div>
+          <div style="float:right; padding:10px 25px 0 0;">
+            <input type="image" src="images/send.gif"/>
+          </div>
+        </div>
+        <div class="location_contact"> <img src="images/map.gif" width="159" height="157" border="0" alt="" /> </div>
+      </div>
     </div>
+    <!-- end of column four -->
+  </div>
+  <!-- end of main_content -->
+  <?php
+        include "footer.php";
+      ?>
 </div>
-    <!-- /.container -->
-	
-	<!-- Footer -->
-        <?php
-			include "footer.php";
-		?>
-
+<!-- end of main_container -->
 </body>
 </html>

@@ -1,19 +1,14 @@
- <footer class="panel-footer footer-custom">
-      <div class="container">
-	  <div class="col-md-4">
-	  <p class="text-muted">Rua Nunes Machado, 201 Sala 301 - Porto Alegre/RS</p>
-	  <p class="text-muted"><i class="fa fa-clock-o"></i> <abbr title="Hours">H</abbr>: Segunda - Sexta: 9:00 às 17:00</p>
-	  <p class="text-muted">Copyright &copy; Aita Imóveis 2015 by HubiW</p>
-	  </div>
-	  <div class="col-md-8">
-		<p class="text-muted"><i class="fa fa-phone"></i><abbr title="Phone">P</abbr>:(51)32193114 <i class="fa fa-phone"></i><abbr title="Phone">P</abbr>:(51)85193114</p>
-                <p class="text-muted"><i class="fa fa-envelope-o"></i><abbr title="Email">E</abbr>: <a href="mailto:aitaimoveis@aitaimoveis.com.br">aitaimoveis@aitaimoveis.com.br</a></p>
-                <ul class="list-unstyled list-inline list-social-icons">
-                    <li>
-                        <a href="https://www.facebook.com/imobiliariaaitaimoveis/?fref=ts"><i class="fa fa-facebook-square fa-1x"></i></a>
-                    </li>
-                </ul>
-	  </div>
-		
-      </div>
-    </footer>
+<div id="footer">
+    <div id="copyright">
+      <div style="float:left; padding:3px;"><a href="#"><img src="images/footer_logo.gif" width="42" height="35" alt="" border="0" /></a></div>
+      <div style="float:left; padding:14px 10px 10px 10px;"> Aita Imóveis.&copy; All Rights Reserved 2008 - By <a href="http://csscreme.com" style="color:#772c17;">csscreme</a></div>
+    </div>
+    <ul class="footer_menu">
+      <li><a href="#" class="nav_footer"> Home </a></li>
+      <li><a href="#" class="nav_footer"> Selling Homes </a></li>
+      <li><a href="#" class="nav_footer"> Buying Homes </a></li>
+      <li><a href="#" class="nav_footer"> Renting Homes</a></li>
+      <li><a href="#" class="nav_footer"> RSS </a></li>
+      <li><a href="#" class="nav_footer"> Contact </a></li>
+    </ul>
+  </div>

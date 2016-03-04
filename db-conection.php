@@ -1,6 +1,11 @@
 <?php
+	#LOGIN LOCAL SERVER
 	$username = "root";
 	$password = "";
+	
+	#LOGIN PRODUCTION SERVER
+	#$username = "master";
+	#$password = "master";
 	$hostname = "localhost"; 
 	$db = "web_data";
 

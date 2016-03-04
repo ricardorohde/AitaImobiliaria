@@ -1,9 +1,6 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 
-print_r($_POST);
-print_r($_FILES);
-
 #CRIA VARIÁVEIS COM OS DADOS INFORMADOS NO FORMULÁRIO
 $transacao = isset($_POST['trans'][0]) ? $_POST['trans'][0]: NULL;
 $tp_imovel = isset($_POST['t_imo']) ? $_POST['t_imo'] : NULL; 
@@ -168,11 +165,12 @@ $query_imoveis = "INSERT INTO imoveis
 							'$status',
 							0,
 							'$zap');";
-print_r(" Query Imoveis: ".$query_imoveis);
+
 $result_imoveis = mysqli_query($conexao,$query_imoveis) or die(mysql_error());
-print_r(" Result Imoives: ".$result_imoveis);
+
+################################################################################
 $imoid = mysqli_insert_id($conexao);
-print_r(" imoid: ".$imoid);
+
 $query_imoveis_caracteristicas = "INSERT INTO caracteristicas_imovel
 											(AndarInteiro,
 											ArCondicionado,
@@ -253,9 +251,11 @@ $query_imoveis_caracteristicas = "INSERT INTO caracteristicas_imovel
 											'$Sauna',
 											'$Vestiario',
 											'$imoid');";
-print_r(" Query Caracteristicas: ".$query_imoveis_caracteristicas);
+
 $result_caracteristicas_imoveis = mysqli_query($conexao,$query_imoveis_caracteristicas) or die(mysql_error());
-print_r(" Result Caracteristicas: ".$result_caracteristicas_imoveis);
+
+
+
 #VERIFICA SE FOI SALVO OS DADOS DO IMÓVEL NO BANCO DE DADOS
 if($result_imoveis && $result_caracteristicas_imoveis){
 	$dadossalvos = True;
@@ -284,9 +284,9 @@ foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
 											'$file_name',
 											'$dir',
 											'$imoid')";
-	print_r(" Query Imagens: ".$query_imagens_imoveis);
+	
 	$result_imagens = mysqli_query($conexao,$query_imagens_imoveis) or die(mysql_error());
-	print_r(" Result_Imagens: ".$result_imagens);
+	
     
 
    

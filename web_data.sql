@@ -48,7 +48,7 @@ click INT(6)
 );
 
 CREATE TABLE caracteristicas_imovel(
-	id INT(4) PRIMARY KEY,
+	id INT(4) AUTO_INCREMENT PRIMARY KEY,
 	AndarInteiro VARCHAR(255),
 	ArCondicionado VARCHAR(255),
 	ArmarioCozinha VARCHAR(255),

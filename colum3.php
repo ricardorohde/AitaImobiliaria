@@ -17,11 +17,15 @@
         <div class="offer_info"> 
           <span>
             <?php
-              echo $row["id"].'-'.$row["nm_empr"]
+              if(!empty($row["nm_empr"])){
+                echo($row["nm_empr"]);
+              }else{
+                echo ($row["tp_imovel"]." ".$row["endereco"]." ".$row["numero"]." ".$row["complemento"]);
+              }
             ?>
           </span>
           <p class="offer"> 
-            &quot;<?php echo (utf8_encode(substr($row["texto"], 0,140))) ?>.&quot; 
+            &quot;<?php echo (substr($row["texto"], 0,140)) ?>.&quot; 
           </p>
           <div class="more">
             <a href="imovel.php?idimo=<?php echo $row["id"] ?>">

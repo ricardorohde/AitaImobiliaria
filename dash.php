@@ -111,6 +111,7 @@
                                 <select class="form-control" id="sel1" name="cidade">
                                     <option>Selecione</option>
                                     <option>Porto Alegre</option>
+                                    <option>Atlântida</option>
                                </select>
                                 <p class="help-block text-danger"></p>
                             </div>

@@ -11,7 +11,7 @@
           $obj = mysqli_fetch_array($result_imagem,MYSQLI_ASSOC);
       ?>
       <div class="offer_box"> 
-        <a href="imovel.php?idimo=<?php echo $row["id"] ?>">
+        <a href="imovel.php?idimo=<?php echo $row["id"]; ?>">
           <img src="<?php echo $obj["dir"].'/'.$obj["name"] ?>" width="130" height="98" class="img_left" alt="" border="0" />
         </a>
         <div class="offer_info"> 
@@ -20,7 +20,7 @@
               if(!empty($row["nm_empr"])){
                 echo($row["nm_empr"]);
               }else{
-                echo ($row["tp_imovel"]." ".$row["endereco"]." ".$row["numero"]." ".$row["complemento"]);
+                echo ($row["tp_imovel"]." ".$row["endereco"]);
               }
             ?>
           </span>
@@ -28,7 +28,7 @@
             &quot;<?php echo (substr($row["texto"], 0,140)) ?>.&quot; 
           </p>
           <div class="more">
-            <a href="imovel.php?idimo=<?php echo $row["id"] ?>">
+            <a href="imovel.php?idimo=<?php echo $row["id"]; ?>">
               ...mais
             </a>
           </div>

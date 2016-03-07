@@ -5,7 +5,7 @@ reg_date TIMESTAMP
 );
 
 CREATE TABLE imoveis(
-id INT(3) AUTO_INCREMENT PRIMARY KEY,
+id INT(4) AUTO_INCREMENT PRIMARY KEY,
 transacao VARCHAR(255),
 tp_imovel VARCHAR(255),
 sb_tp_imovel VARCHAR(255),

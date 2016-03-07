@@ -262,9 +262,10 @@ if($result_imoveis && $result_caracteristicas_imoveis){
 }
 
 #CRIA DIRETÓRIO
-$dirformated = iconv("UTF-8","Windows-1252",$dir);
-$createddir = mkdir($dirformated,777);
+#$dirformated = iconv("UTF-8","Windows-1252",$dir);
+$createddir = mkdir($dir,0777, true);
 $upload  = false;
+
 
 #EXECUTA O LAÇO PARA AS 'N' IMAGENS INSERIDAS NO UPLOAD
 foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
@@ -288,12 +289,11 @@ foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
 	$result_imagens = mysqli_query($conexao,$query_imagens_imoveis) or die(mysql_error());
 	
     
-
+	echo($_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$file_name);
    
 
     #MOVE IMAGEM UPLOAD PARA DIRETÓRIO ESPECIFICADO
-    $upload = move_uploaded_file($file_tmp, $_SERVER['DOCUMENT_ROOT'].'AitaImobiliaria/'.$dirformated.'/'.$file_name);
-    print_r(" Upload: ".$upload);
+    $upload = move_uploaded_file($file_tmp, $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$file_name);
     
 }
 

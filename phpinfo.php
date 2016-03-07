@@ -8,5 +8,6 @@
 	else
 		echo "Biblioteca GD não foi carregada ou não existe";
 
+	echo($_SERVER['DOCUMENT_ROOT'].'/'.$dirformated.'/'.$file_name);
 
 ?>

@@ -274,6 +274,21 @@ foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
     $file_tmp =$_FILES['files']['tmp_name'][$key];
     $file_type=$_FILES['files']['type'][$key];
 
+    #MOVE IMAGEM UPLOAD PARA DIRETÓRIO ESPECIFICADO
+    $upload = move_uploaded_file($file_tmp, $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$file_name);
+
+    #$save = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$file_name; //This is the new file you saving
+    #$file = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$file_name; //This is the original file
+
+    #list($width, $height) = getimagesize($file); 
+
+
+    #$tn = imagecreatetruecolor($width, $height) ; 
+    #$image = imagecreatefromjpeg($file) ; 
+    #imagecopyresampled($tn, $image, 0, 0, 0, 0, $width, $height, $width, $height) ; 
+
+    #imagejpeg($tn, $save, 50) ;
+
     #SALVA INFORMAÇÕES DAS IMAGENS NO BANCO DE DADOS
     $query_imagens_imoveis = "INSERT INTO imagens_imo
 											(id,
@@ -287,13 +302,6 @@ foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
 											'$imoid')";
 	
 	$result_imagens = mysqli_query($conexao,$query_imagens_imoveis) or die(mysql_error());
-	
-    
-	echo($_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$file_name);
-   
-
-    #MOVE IMAGEM UPLOAD PARA DIRETÓRIO ESPECIFICADO
-    $upload = move_uploaded_file($file_tmp, $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$file_name);
     
 }
 

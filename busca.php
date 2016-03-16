@@ -14,10 +14,23 @@
         ?>
     <!-- end of column one -->
     <div class="column4">
-      <div class="title">Venda</div>
+      <div class="title">Aluguel</div>
       <?php
         require "db-conection.php";
-        $result = mysqli_query($conexao,utf8_encode("SELECT * FROM imoveis WHERE transacao = 'Venda'")) or die(mysql_error());
+
+        $precoinicial = $_POST['precoinicial'];
+        $precofinal = $_POST['precofinal'];
+        $quartos = $_POST['quartos'];
+        $estado = $_POST['estado'];
+        $cidade = $_POST['cidade'];
+        $optradio = $_POST['optradio'];
+      
+        
+        if ($optradio = "Locação" || $optradio = "Locação por Temporada") {
+          $result = mysqli_query($conexao,utf8_encode("SELECT * FROM imoveis WHERE estado = $estado AND cidade = $cidade AND transacao = $optradio AND quartos = $quartos AND v_aluguel>= $precoinicial AND v_aluguel<= precofinal ")) or die(mysql_error());  
+        }else{
+          $result = mysqli_query($conexao,utf8_encode("SELECT * FROM imoveis WHERE estado = $estado AND cidade = $cidade AND transacao = $optradio AND quartos = $quartos AND v_t_venda>= $precoinicial  AND v_t_venda <= precofinal   ")) or die(mysql_error());
+        }
         while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)){
           $id = $row["id"];
           $result_imagem = mysqli_query($conexao,utf8_encode("SELECT * FROM  imagens_imo WHERE imo = $id AND name LIKE '00%' LIMIT 1 ")) or die(mysql_error());
@@ -48,9 +61,7 @@
       <?php
         }
       ?>
-      <div>
-        <img src="images/baner2.jpg" width="700" height="150" alt="" border="0" />
-      </div>
+      <div class="pagination"> <span class="disabled"><<</span><span class="current">1</span><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">6</a><a href="#">7</a>…<a href="#">10</a><a href="#">11</a><a href="#">>></a> </div>
     </div>
     <!-- end of column four -->
   </div>

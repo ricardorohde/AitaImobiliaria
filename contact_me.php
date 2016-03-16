@@ -1,26 +1,30 @@
 <?php
 // Check for empty fields
-if(empty($_POST['name'])  		||
+if(empty($_POST['nome'])  		||
    empty($_POST['email']) 		||
-   empty($_POST['phone']) 		||
-   empty($_POST['message'])	||
+   empty($_POST['telefone']) 		||
+   empty($_POST['mensagem'])	||
    !filter_var($_POST['email'],FILTER_VALIDATE_EMAIL))
    {
-	echo "No arguments Provided!";
-	return false;
+	echo "Sem argumentos. Não é possível enviar email.";
+	
    }
 	
-$name = $_POST['name'];
-$email_address = $_POST['email'];
-$phone = $_POST['phone'];
-$message = $_POST['message'];
+$nome = utf8_encode($_POST['nome']);
+$email = $_POST['email'];
+$telefone = $_POST['telefone'];
+$estado = $_POST['estado'];
+$cidade = $_POST['cidade'];
+$assunto = $_POST['assunto'];
+$mensagem = $_POST['mensagem'];
 	
-// Create the email and send the message
-$to = 'aitaimoveis@aitaimoveis.com.br'; // Add your email address inbetween the '' replacing yourname@yourdomain.com - This is where the form will send a message to.
-$email_subject = "Website Contact Form:  $name";
-$email_body = "You have received a new message from your website contact form.\n\n"."Here are the details:\n\nName: $name\n\nEmail: $email_address\n\nPhone: $phone\n\nMessage:\n$message";
-$headers = "From: noreply@aitaimoveis.com\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
-$headers .= "Reply-To: $email_address";	
-mail($to,$email_subject,$email_body,$headers);
-return true;			
+$to      = 'contato@aitaimoveis.com.br';
+$headers = 'From: ' . $email . "\r\n" .
+    'Nome: ' .$nome . "\r\n" .
+    'Telefone: ' .$telefone . "\r\n" . 
+    'Estado: '. $estado . "\r\n" .
+    'Cidade: '. $cidade;
+
+mail($to, $assunto, $mensagem, $headers);
+header('Location: index.php');
 ?>

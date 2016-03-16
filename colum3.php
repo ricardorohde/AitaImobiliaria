@@ -7,7 +7,7 @@
         $result_imoveis = mysqli_query($conexao,"SELECT * FROM imoveis ORDER BY imoveis.click DESC LIMIT 3 ") or die(mysql_error());
         while($row = mysqli_fetch_array($result_imoveis,MYSQLI_ASSOC)){
          $id = $row["id"];
-          $result_imagem = mysqli_query($conexao,"SELECT * FROM  imagens_imo WHERE imo = $id LIMIT 1 ") or die(mysql_error());
+          $result_imagem = mysqli_query($conexao,"SELECT * FROM  imagens_imo WHERE imo = $id AND name LIKE '00%' LIMIT 1 ") or die(mysql_error());
           $obj = mysqli_fetch_array($result_imagem,MYSQLI_ASSOC);
       ?>
       <div class="offer_box"> 
@@ -16,6 +16,7 @@
         </a>
         <div class="offer_info"> 
           <span>
+            <a href="imovel.php?idimo=<?php echo $row["id"]; ?>">
             <?php
               if(!empty($row["nm_empr"])){
                 echo($row["nm_empr"]);
@@ -23,15 +24,12 @@
                 echo ($row["tp_imovel"]." ".$row["endereco"]);
               }
             ?>
+            </a>
           </span>
           <p class="offer"> 
             &quot;<?php echo (substr($row["texto"], 0,140)) ?>.&quot; 
           </p>
-          <div class="more">
-            <a href="imovel.php?idimo=<?php echo $row["id"]; ?>">
-              ...mais
-            </a>
-          </div>
+          
         </div>
       </div>
       <?php

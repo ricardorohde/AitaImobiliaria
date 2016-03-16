@@ -35,7 +35,6 @@ text-decoration:none;
 }
 p{
 font-size:13px;
-text-align:justify;
 padding:2px;
 margin:0px;
 }
@@ -76,9 +75,9 @@ margin:auto;
 }
 #logo{
 width:147px;
-height:78px;
+height:88px;
 float:left;
-padding:20px 0 0 35px;
+padding:15px 20px 5px 20px;
 }
 .banner_adds{
 width:750px;
@@ -410,7 +409,7 @@ float:left;
 margin-left:10px;
 }
 .contact_information{
-font-size:10px;
+font-size:11px;
 color:#385870;
 text-align:left;
 padding-left:20px;
@@ -545,4 +544,15 @@ text-decoration:none;  color:#2F2626;}
 #copyright{
 float:left;
 padding:0px;
+}
+
+.GeneratedTextJustify{
+text-indent:2em;
+text-align:justify;
+font-size: 13px;
+}
+
+.GeneratedTextRight{
+text-align:right;
+font-size: 13px;
 }

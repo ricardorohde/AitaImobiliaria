@@ -11,49 +11,71 @@
   <div id="main_content">
     <?php
           include "colum1.php";
+          if(!empty($_GET)){
+            $assunto = $_GET['iassunto'];
+          }
+          
     ?>
-    <!-- end of column one -->
-    <?php
-          include "colum2.php";
-    ?>
-    <!-- end of column two -->
-    <?php
-          include "colum3.php";
-    ?>
-    <!-- end of column three -->
+
     <div class="column4">
       <div class="title">Contato</div>
       <div class="contact_tab">
-        <div class="form_contact">
+        <form class="form_contact" action="contact_me.php" name="envmen" enctype="multipart/form-data" method="post" id="imocont" novalidate>
           <div class="form_row_contact">
             <label class="left">Nome: </label>
-            <input type="text" class="form_input_contact"/>
+            <input type="text" class="form_input_contact" name="nome" id="nome"/>
           </div>
           <div class="form_row_contact">
             <label class="left">Email: </label>
-            <input type="text" class="form_input_contact"/>
+            <input type="text" class="form_input_contact" name="email" id="email"/>
           </div>
           <div class="form_row_contact">
             <label class="left">Telefone: </label>
-            <input type="text" class="form_input_contact"/>
+            <input type="text" class="form_input_contact" name="telefone" id="telefone"/>
           </div>
           <div class="form_row_contact">
             <label class="left">Estado: </label>
-            <input type="text" class="form_input_contact"/>
+            <input type="text" class="form_input_contact" name="estado" id="estado"/>
+          </div>
+          <div class="form_row_contact">
+            <label class="left">Cidade: </label>
+            <input type="text" class="form_input_contact" name="cidade" id="cidade"/>
+          </div>
+          <div class="form_row_contact">
+            <label class="left">Assunto: </label>
+            <?php
+              if (empty($_GET['iassunto'])) {
+                
+                echo('<input type="text" class="form_input_contact" name="assunto" id="assunto"/>');
+              }else{
+
+                echo('<input type="text" class="form_input_contact" name="assunto" id="assunto" value="' .$assunto.'"/>');
+              }
+            ?>
           </div>
           <div class="form_row_contact">
             <label class="left">Mensagem: </label>
-            <textarea name="" rows="" cols="" ></textarea>
+            <textarea name="mensagem" rows="" cols="" id="mensagem"></textarea>
           </div>
           <div style="float:right; padding:10px 25px 0 0;">
-            <input type="image" src="images/send.gif"/>
+            <button type="submit" value="upload" class="btn btn-success btn-lg">Enviar</button>
           </div>
-        </div>
-        <div class="location_contact"> <img src="images/map.gif" width="159" height="157" border="0" alt="" /> </div>
+        </form>
+        <div class="location_contact"> <img src="images/fale.jpg" width="250" height="250" border="0" alt="" /> </div>
+      </div>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+      <div>
+        <img src="images/baner2.jpg" width="700" height="150" alt="" border="0" />
       </div>
     </div>
     <!-- end of column four -->
+
   </div>
+ 
   <!-- end of main_content -->
   <?php
         include "footer.php";

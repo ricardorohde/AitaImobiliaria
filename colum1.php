@@ -4,74 +4,79 @@
         <div class="center_left_box">
           <div class="box_title"><span>Busca</span>
           </div>
-          <div class="form">
+          <form class="form" action="busca.php" name="busimo" enctype="multipart/form-data" method="post" id="buscimo" novalidate>
             <div class="form_row">
               <label class="left">Cidade: </label>
-              <input type="text" class="form_input" />
+              <input type="text" class="form_input" id="cidade"/>
             </div>
             <div class="form_row">
               <label class="left">Estado: </label>
-              <input type="text" class="form_input" />
+              <input type="text" class="form_input" id="estado"/>
             </div>
             <div class="form_row">
               <label class="left">Preço: </label>
-              <input type="text" class="form_input" value="Mínimo" />
+              <input type="text" class="form_input" value="Mínimo" id="precoinicial"/>
             </div>
             <div class="form_row">
               <label class="left">Até: </label>
-              <input type="text" class="form_input" value="Máximo" />
+              <input type="text" class="form_input" value="Máximo" id="precofinal"/>
             </div>
             <div class="form_row">
               <label class="left">Quartos: </label>
-              <input type="text" class="form_input" />
+              <input type="text" class="form_input" id="quartos"/>
             </div>
             <div class="form_row">
               <label class="left_long">Tipo:</label>
             </div>
             <div class="form_row">
-              <input type="radio" name="reason" />
+              <input type="radio" name="reason" id="optradio"/>
               Venda</div>
             <div class="form_row">
-              <input type="radio" name="reason" />
+              <input type="radio" name="reason" id="optradio"/>
               Compra</div>
             <div class="form_row">
-              <input type="radio" name="reason" />
+              <input type="radio" name="reason" id="optradio"/>
               Aluguel</div>
             <div style="float:right; padding:10px 25px 0 0;">
-              <input type="image" src="images/find.gif" />
+              <button type="submit" value="upload" class="btn btn-success btn-lg">Buscar</button>
             </div>
-          </div>
+          </form>
         </div>
         <div class="bottom_left_box"> </div>
       </div>
+      
+      <!--NEWSLETTER -->
       <div class="left_box">
         <div class="top_left_box"> </div>
         <div class="center_left_box">
-          <div class="box_title"><span>Assine</span> nossa newsletter:</div>
+          <div class="box_title">
+            <span>(51) 8519-3114</span>
+          </div>
           <div class="form">
-            <div class="form_row">
-              <label class="left">Email: </label>
-              <input type="text" class="form_input" />
-            </div>
-            <div style="float:right; padding:10px 25px 0 0;">
-              <input type="image" src="images/join.gif" />
+            <div class="form_row" font-size = "11">
+              Horário de Funcionamento<br/><br/>
+              De Segunda-feira a sexta-feira<br/><br/>
+              Das 09h às 12h e Das 14h às 17h
             </div>
           </div>
         </div>
         <div class="bottom_left_box"> </div>
       </div>
+      <!-- END NEWSLETTER -->
+
       <div class="left_box">
         <div class="top_left_box"> </div>
         <div class="center_left_box">
           <div class="box_title"><span>Contato:</span> 
           </div>
           <div class="form">
-            <div class="form_row"> <img src="images/contact_envelope.gif" width="50" height="47" border="0" class="img_right" alt="" />
-              <div class="contact_information"> Email: contato@aitaimoveis.com.br<br />
-                Telefone: 51 32193114 <br />
-                Telefone: 51 85193114<br />
+            <div class="form_row" font-size = "11">
+              Email: contato@aitaimoveis.com.br<br/><br/>
+                Telefone: (51) 3219-3114 <br/>
+                Telefone: (51) 8519-3114<br/>
                 <br />
-                <span>www.aitaimoveis.com.br</span> </div>
+                <span>www.aitaimoveis.com.br</span> 
+              
             </div>
           </div>
         </div>

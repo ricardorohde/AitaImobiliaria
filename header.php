@@ -1,5 +1,5 @@
 <div id="header">
-    <div id="logo"> <a href="index.php"><img src="images/logoaitaimoveis.jpg" width="147" height="78" alt="" border="0" /></a> </div>
+    <div id="logo"> <a href="index.php"><img src="images/logoaitaimoveis.png" width="147" height="78" alt="" border="0" /></a> </div>
     <div class="banner_adds"></div>
     <div class="menu">
       <ul>

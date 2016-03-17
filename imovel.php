@@ -79,7 +79,7 @@
                     echo (money_format('%n', $obj_imovel->v_t_venda));
                   }
                 ?></h1>
-        <p> <?php echo ($obj_imovel->texto) ?> </p>
+        <div class="GeneratedTextJustify"> <?php echo ($obj_imovel->texto) ?> </div>
       </div>
       <div class="title2">Detalhes</div>
       <div class="details_list">

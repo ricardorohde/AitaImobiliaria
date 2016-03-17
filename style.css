@@ -37,6 +37,7 @@ p{
 font-size:13px;
 padding:2px;
 margin:0px;
+text-align:justify;
 }
 p.proposal_text{
 width:170px;
@@ -518,7 +519,8 @@ width:970px;
 height:41px;
 clear:both;
 font-size:11px;
-background-color:#f2efef;
+font-color:white;
+background-color:#05619b;
 border-top:1px #eeabbd dashed;
 }
 ul.footer_menu {
@@ -545,6 +547,8 @@ text-decoration:none;  color:#2F2626;}
 float:left;
 padding:0px;
 }
+
+/*--Indentation---*/
 
 .GeneratedTextJustify{
 text-indent:2em;

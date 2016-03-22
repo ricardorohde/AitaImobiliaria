@@ -7,11 +7,18 @@
           <form class="form" action="busca.php" name="busimo" enctype="multipart/form-data" method="post" id="buscimo" novalidate>
             <div class="form_row">
               <label class="left">Cidade: </label>
-              <input type="text" class="form_input" id="cidade"/>
+              <select class="form_input" id="cidade" name="cidade">
+                                    <option>Selecione</option>
+                                    <option>Porto Alegre</option>
+                                    <option>Atlântida</option>
+                               </select>
             </div>
             <div class="form_row">
               <label class="left">Estado: </label>
-              <input type="text" class="form_input" id="estado"/>
+              <select class="form_input" id="estado" name="estado" >
+                                    <option>Selecione</option>
+                                    <option>RS</option>
+                               </select>
             </div>
             <div class="form_row">
               <label class="left">Preço: </label>
@@ -31,9 +38,6 @@
             <div class="form_row">
               <input type="radio" name="reason" id="optradio"/>
               Venda</div>
-            <div class="form_row">
-              <input type="radio" name="reason" id="optradio"/>
-              Compra</div>
             <div class="form_row">
               <input type="radio" name="reason" id="optradio"/>
               Aluguel</div>

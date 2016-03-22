@@ -3,7 +3,7 @@
 <?php
     include "head.php";
   ?>
-<body>
+<body link="#05619b" vlink="#05619b" alink="#05619b">
 <div id="main_container">
   <?php
         include "header.php";

@@ -2,8 +2,22 @@
 header('Content-Type: text/html; charset=utf-8');
 
 #CRIA VARIÁVEIS COM OS DADOS INFORMADOS NO FORMULÁRIO
-$transacao = isset($_POST['trans'][0]) ? $_POST['trans'][0]: NULL;
-$tp_imovel = isset($_POST['t_imo']) ? $_POST['t_imo'] : NULL; 
+$transacoes = $_POST['trans'];
+$venda = NULL;
+$locacao = NULL;
+$temporada = NULL;
+foreach ($transacoes as $t) {
+	if ($t = 'Venda') {
+		$venda = isset($t) ? $t : NULL;
+	} elseif ($ = 'Locação') {
+		$locacao = isset($t) ? $t : NULL;
+	} else {
+		$temporada = isset($t) ? $t : NULL;
+	}
+	
+}
+
+$tp_imovel = isset($_POST['t_imo']) ? $_POST['t_imo'] : NULL;
 $sb_tp_imovel = isset($_POST['sbt_imo']) ? $_POST['sbt_imo'] : NULL;
 $categoria = isset($_POST['cat']) ? $_POST['cat'] : NULL;
 $cep = isset($_POST['cep']) ? $_POST['cep'] : NULL;
@@ -79,6 +93,7 @@ $SalaoFestas = isset($_POST['SalaoFestas']) ? $_POST['SalaoFestas']  :NULL;
 $SalaoJogos  = isset($_POST['SalaoJogos']) ? $_POST['SalaoJogos']  :NULL;
 $Sauna = isset($_POST['Sauna']) ? $_POST['Sauna']  :NULL;
 $Vestiario = isset($_POST['Vestiario']) ? $_POST['Vestiario']  :NULL;
+$principal = NULL;
 
 
 #INICIA CONEXÃO COM O BANCO DE DADOS
@@ -87,6 +102,8 @@ include "db-conection.php";
 $dadossalvos = False;
 $query_imoveis = "INSERT INTO imoveis 
 							(transacao,
+							transacao1,
+							transacao2,
 							tp_imovel,
 							sb_tp_imovel,
 							categoria,
@@ -124,9 +141,12 @@ $query_imoveis = "INSERT INTO imoveis
 							texto,
 							status,
 							click,
-							zap) 
+							zap,
+							principal) 
 							VALUES 
-							('$transacao',
+							('$locacao',
+							'$venda',
+							'$temporada',
 							'$tp_imovel',
 							'$sb_tp_imovel',
 							'$categoria',
@@ -164,7 +184,9 @@ $query_imoveis = "INSERT INTO imoveis
 							'$texto',
 							'$status',
 							0,
-							'$zap');";
+							'$zap',
+							'$principal');";
+
 
 $result_imoveis = mysqli_query($conexao,$query_imoveis) or die(mysql_error());
 
@@ -252,6 +274,8 @@ $query_imoveis_caracteristicas = "INSERT INTO caracteristicas_imovel
 											'$Vestiario',
 											'$imoid');";
 
+
+
 $result_caracteristicas_imoveis = mysqli_query($conexao,$query_imoveis_caracteristicas) or die(mysql_error());
 
 
@@ -300,6 +324,7 @@ foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
 											'$file_name',
 											'$dir',
 											'$imoid')";
+	
 	
 	$result_imagens = mysqli_query($conexao,$query_imagens_imoveis) or die(mysql_error());
     

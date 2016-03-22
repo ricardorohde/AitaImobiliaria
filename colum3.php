@@ -4,7 +4,7 @@
       </div>
       <?php
         require "db-conection.php";
-        $result_imoveis = mysqli_query($conexao,"SELECT * FROM imoveis ORDER BY imoveis.click DESC LIMIT 3 ") or die(mysql_error());
+        $result_imoveis = mysqli_query($conexao,"SELECT * FROM imoveis WHERE status = 'Ativo' ORDER BY imoveis.click DESC LIMIT 3 ") or die(mysql_error());
         while($row = mysqli_fetch_array($result_imoveis,MYSQLI_ASSOC)){
          $id = $row["id"];
           $result_imagem = mysqli_query($conexao,"SELECT * FROM  imagens_imo WHERE imo = $id AND name LIKE '00%' LIMIT 1 ") or die(mysql_error());

@@ -24,13 +24,34 @@
         $estado = $_POST['estado'];
         $cidade = $_POST['cidade'];
         $optradio = $_POST['optradio'];
-      
-        
-        if ($optradio = "Locação" || $optradio = "Locação por Temporada") {
-          $result = mysqli_query($conexao,utf8_encode("SELECT * FROM imoveis WHERE estado = $estado AND cidade = $cidade AND transacao = $optradio AND quartos = $quartos AND v_aluguel>= $precoinicial AND v_aluguel<= precofinal ")) or die(mysql_error());  
-        }else{
-          $result = mysqli_query($conexao,utf8_encode("SELECT * FROM imoveis WHERE estado = $estado AND cidade = $cidade AND transacao = $optradio AND quartos = $quartos AND v_t_venda>= $precoinicial  AND v_t_venda <= precofinal   ")) or die(mysql_error());
-        }
+
+	$queryimoveis="SELECT * FROM imoveis";
+	$i = 0;
+	while($i<$_POST(size)){
+		if($i == 0){
+		$queryimoveis = ."WHERE";
+		}else{
+		$queryimoveis = ."AND";
+		}
+	
+		if(!empty($estado)){
+			$queryimoveis= ."estado = $estado";
+		}
+		if(!empty($cidade)){
+			$queryimoveis= ."cidade = $cidade";
+		}
+	
+		if(!empty($quartos)){
+			$queryimoveis= ."quartos = $quartos";
+		}
+	
+	        if ($optradio = "Locação" || $optradio = "Locação por Temporada") {
+	          $result = mysqli_query($conexao,utf8_encode("SELECT * FROM imoveis WHERE estado = $estado AND cidade = $cidade AND transacao = $optradio AND quartos = $quartos AND v_aluguel>= $precoinicial AND v_aluguel<= precofinal ")) or die(mysql_error());  
+	        }else{
+	          $result = mysqli_query($conexao,utf8_encode("SELECT * FROM imoveis WHERE estado = $estado AND cidade = $cidade AND transacao = $optradio AND quartos = $quartos AND v_t_venda>= $precoinicial  AND v_t_venda <= precofinal   ")) or die(mysql_error());
+	        }
+
+	}
         while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)){
           $id = $row["id"];
           $result_imagem = mysqli_query($conexao,utf8_encode("SELECT * FROM  imagens_imo WHERE imo = $id AND name LIKE '00%' LIMIT 1 ")) or die(mysql_error());

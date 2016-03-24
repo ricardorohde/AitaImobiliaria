@@ -17,72 +17,71 @@
       <div class="title">Aluguel</div>
       <?php
         require "db-conection.php";
+	print_r($_POST);
+        #$precoinicial = $_POST['precoinicial'];
+        #$precofinal = $_POST['precofinal'];
+        #$quartos = $_POST['quartos'];
+        #$estado = $_POST['estado'];
+        #$cidade = $_POST['cidade'];
+        #$optradio = $_POST['optradio'];
 
-        $precoinicial = $_POST['precoinicial'];
-        $precofinal = $_POST['precofinal'];
-        $quartos = $_POST['quartos'];
-        $estado = $_POST['estado'];
-        $cidade = $_POST['cidade'];
-        $optradio = $_POST['optradio'];
+	#$queryimoveis="SELECT * FROM imoveis";
+	#$i = 0;
+	#while($i<$_POST(size)){
+	#	if($i == 0){
+	#	$queryimoveis = ."WHERE";
+	#	}else{
+	#	$queryimoveis = ."AND";
+	#	}
+	
+	#	if(!empty($estado)){
+	#		$queryimoveis= ."estado = $estado";
+	#	}
+	#	if(!empty($cidade)){
+	#		$queryimoveis= ."cidade = $cidade";
+	#	}
+	
+	#	if(!empty($quartos)){
+	#		$queryimoveis= ."quartos = $quartos";
+	#	}
+	
+	 #       if ($optradio = "Locação" || $optradio = "Locação por Temporada") {
+	  #        $result = mysqli_query($conexao,utf8_encode("SELECT * FROM imoveis WHERE estado = $estado AND cidade = $cidade AND transacao = $optradio AND quartos = $quartos AND v_aluguel>= $precoinicial AND v_aluguel<= precofinal ")) or die(mysql_error());  
+	   #     }else{
+	    #      $result = mysqli_query($conexao,utf8_encode("SELECT * FROM imoveis WHERE estado = $estado AND cidade = $cidade AND transacao = $optradio AND quartos = $quartos AND v_t_venda>= $precoinicial  AND v_t_venda <= precofinal   ")) or die(mysql_error());
+	     #   }
 
-	$queryimoveis="SELECT * FROM imoveis";
-	$i = 0;
-	while($i<$_POST(size)){
-		if($i == 0){
-		$queryimoveis = ."WHERE";
-		}else{
-		$queryimoveis = ."AND";
-		}
-	
-		if(!empty($estado)){
-			$queryimoveis= ."estado = $estado";
-		}
-		if(!empty($cidade)){
-			$queryimoveis= ."cidade = $cidade";
-		}
-	
-		if(!empty($quartos)){
-			$queryimoveis= ."quartos = $quartos";
-		}
-	
-	        if ($optradio = "Locação" || $optradio = "Locação por Temporada") {
-	          $result = mysqli_query($conexao,utf8_encode("SELECT * FROM imoveis WHERE estado = $estado AND cidade = $cidade AND transacao = $optradio AND quartos = $quartos AND v_aluguel>= $precoinicial AND v_aluguel<= precofinal ")) or die(mysql_error());  
-	        }else{
-	          $result = mysqli_query($conexao,utf8_encode("SELECT * FROM imoveis WHERE estado = $estado AND cidade = $cidade AND transacao = $optradio AND quartos = $quartos AND v_t_venda>= $precoinicial  AND v_t_venda <= precofinal   ")) or die(mysql_error());
-	        }
-
-	}
-        while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)){
-          $id = $row["id"];
-          $result_imagem = mysqli_query($conexao,utf8_encode("SELECT * FROM  imagens_imo WHERE imo = $id AND name LIKE '00%' LIMIT 1 ")) or die(mysql_error());
-          $obj = mysqli_fetch_array($result_imagem,MYSQLI_ASSOC);
+	#}
+        #while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+         # $id = $row["id"];
+         # $result_imagem = mysqli_query($conexao,utf8_encode("SELECT * FROM  imagens_imo WHERE imo = $id AND name LIKE '00%' LIMIT 1 ")) or die(mysql_error());
+        #  $obj = mysqli_fetch_array($result_imagem,MYSQLI_ASSOC);
       ?>
       <div class="offer_box_wide"> 
-        <a href="imovel.php?idimo=<?php echo $row["id"]; ?>">
-          <img src="<?php echo $obj["dir"].'/'.$obj["name"] ?>" width="130" height="98" class="img_left" alt="" border="0" />
+        <a href="imovel.php?idimo=<?php #echo $row["id"]; ?>">
+          <img src="<?php #echo $obj["dir"].'/'.$obj["name"] ?>" width="130" height="98" class="img_left" alt="" border="0" />
         </a>
         <div class="offer_info"> 
           <span>
-            <a href="imovel.php?idimo=<?php echo $row["id"]; ?>">
+            <a href="imovel.php?idimo=<?php #echo $row["id"]; ?>">
              <?php
               
-              if(!empty($row["nm_empr"])){
-                echo($row["nm_empr"]);
-              }else{
-                echo ($row["tp_imovel"]." ".$row["endereco"]);
-              }
+              #if(!empty($row["nm_empr"])){
+               # echo($row["nm_empr"]);
+#              }else{
+ #               echo ($row["tp_imovel"]." ".$row["endereco"]);
+  #            }
             ?>
             </a>
           </span>
           <p class="offer"> 
-            &quot;<?php echo (substr($row["texto"], 0,140)) ?>.&quot; 
+            &quot;<?php #echo (substr($row["texto"], 0,140)) ?>.&quot; 
           </p>
         </div>
       </div>
       <?php
         }
       ?>
-      <div class="pagination"> <span class="disabled"><<</span><span class="current">1</span><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">6</a><a href="#">7</a>…<a href="#">10</a><a href="#">11</a><a href="#">>></a> </div>
     </div>
     <!-- end of column four -->
   </div>

@@ -92,15 +92,74 @@ float:left;
 width:80px;
 padding-top:3px;
 text-align:right;
+font-size:14px;
+font-weight:bold;
 }
 label.adminright{
 float:left;
 width:200px;
 padding-top:3px;
-padding-left:5px;
+padding-left:6px;
 text-align: left;
-color:#006699;
+font-size:14px;
+font-weight:bold;
+
 }
+/*------CHECKBOX----------------*/
+.checkbox-inline{
+padding-top:3px;
+padding-left:5px;
+}
+
+fieldset.group  { 
+  margin: 0; 
+  padding: 0; 
+  margin-bottom: 1.25em; 
+  padding: .125em; 
+} 
+
+fieldset.group legend { 
+  margin: 0; 
+  padding: 0; 
+  font-weight: bold; 
+  margin-left: 20px; 
+  font-size: 100%; 
+  color: black; 
+} 
+
+
+ul.checkbox  { 
+  margin: 0; 
+  padding: 0; 
+  margin-left: 20px; 
+  list-style: none; 
+} 
+
+ul.checkbox li input { 
+  margin-right: .25em; 
+} 
+
+ul.checkbox li { 
+  border: 1px transparent solid; 
+  display:inline-block;
+  width:12em;
+} 
+
+ul.checkbox li label { 
+  margin-left: ; 
+} 
+ul.checkbox li:hover, 
+ul.checkbox li.focus  { 
+  background-color: lightyellow; 
+  border: 1px gray solid; 
+  width: 12em; 
+} 
+
+
+
+
+
+/*----------------------*/
 .add_tab{
 width: 950px;
 height: auto;

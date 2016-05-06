@@ -9,7 +9,7 @@ $result = mysqli_query($conexao,"SELECT * FROM usuarios WHERE user='$usuario' AN
 $row_cnt = mysqli_num_rows($result);
 if ($row_cnt > 0){
 	mysqli_query($conexao,"UPDATE usuarios SET reg_date = now() WHERE user ='$usuario'");
-	header('Location: dash.php');
+	header('Location: admin.php');
 }
 
 ?>

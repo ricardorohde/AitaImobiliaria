@@ -15,7 +15,7 @@ $email = $_POST['email'];
 $telefone = $_POST['telefone'];
 $estado = $_POST['estado'];
 $cidade = $_POST['cidade'];
-$assunto = $_POST['assunto'];
+$assunto = utf8_encode($_POST['assunto']);
 $mensagem = $_POST['mensagem'];
 	
 $to      = 'contato@aitaimoveis.com.br';

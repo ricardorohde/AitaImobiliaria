@@ -7,39 +7,39 @@
           <form class="form" action="busca.php" name="busimo" enctype="multipart/form-data" method="post" id="buscimo" novalidate>
             <div class="form_row">
               <label class="left">Cidade: </label>
-              <select class="form_input" id="cidade" name="cidade">
-                                    <option>Selecione</option>
-                                    <option>Porto Alegre</option>
-                                    <option>Atlântida</option>
-                               </select>
+                <select class="form_input" id="cidade" name="cidade">
+                  <option>Selecione</option>
+                  <option>Porto Alegre</option>
+                  <option>Atlântida</option>
+                </select>
             </div>
             <div class="form_row">
               <label class="left">Estado: </label>
-              <select class="form_input" id="estado" name="estado" >
-                                    <option>Selecione</option>
-                                    <option>RS</option>
-                               </select>
+                <select class="form_input" id="estado" name="estado" >
+                  <option>Selecione</option>
+                  <option>RS</option>
+                </select>
             </div>
             <div class="form_row">
               <label class="left">Preço: </label>
-              <input type="text" class="form_input" value="Mínimo" id="precoinicial"/>
+              <input type="text" class="form_input" value="Mínimo" id="precoinicial" name="precoinicial"/>
             </div>
             <div class="form_row">
               <label class="left">Até: </label>
-              <input type="text" class="form_input" value="Máximo" id="precofinal"/>
+              <input type="text" class="form_input" value="Máximo" id="precofinal" name="precofinal"/>
             </div>
             <div class="form_row">
               <label class="left">Quartos: </label>
-              <input type="text" class="form_input" id="quartos"/>
+              <input type="text" class="form_input" id="quartos" name="quartos"/>
             </div>
             <div class="form_row">
               <label class="left_long">Tipo:</label>
             </div>
             <div class="form_row">
-              <input type="radio" name="reason" id="optradio"/>
+              <input type="radio" name="transacao" id="optradio" value="Venda"/>
               Venda</div>
             <div class="form_row">
-              <input type="radio" name="reason" id="optradio"/>
+              <input type="radio" name="transacao" id="optradio" value="Aluguel"/>
               Aluguel</div>
             <div style="float:right; padding:10px 25px 0 0;">
               <button type="submit" value="upload" class="btn btn-success btn-lg">Buscar</button>
@@ -86,4 +86,5 @@
         </div>
         <div class="bottom_left_box"> </div>
       </div>
+      <div id="map"></div>
     </div>

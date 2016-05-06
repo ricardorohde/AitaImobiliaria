@@ -1,23 +1,25 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
-
 #CRIA VARIÁVEIS COM OS DADOS INFORMADOS NO FORMULÁRIO
-$transacoes = $_POST['trans'];
-$venda = NULL;
-$locacao = NULL;
-$temporada = NULL;
-foreach ($transacoes as $t) {
-	if ($t = 'Venda') {
-		$venda = isset($t) ? $t : NULL;
-	} elseif ($ = 'Locação') {
-		$locacao = isset($t) ? $t : NULL;
-	} else {
-		$temporada = isset($t) ? $t : NULL;
+
+$transacao = isset($_POST['trans'][0]) ? $_POST['trans'][0]: NULL;
+$size = count($_POST['trans']);
+for($i = 0; $i<=$size;$i++){
+
+	if($_POST['trans'][$i]=='Aluguel'){
+		$transacao = utf8_encode(isset($_POST['trans'][$i]) ? $_POST['trans'][$i]: NULL);
+		
+	}elseif ($_POST['trans'][$i]=='Venda') {
+		$transacao1 = utf8_encode(isset($_POST['trans'][$i]) ? $_POST['trans'][$i]: NULL);
+		
+	}elseif($_POST['trans'][$i]=='Aluguel Temporada'){
+		$transacao2 = utf8_encode(isset($_POST['trans'][$i]) ? $_POST['trans'][$i]: NULL);
+
+		
 	}
-	
 }
 
-$tp_imovel = isset($_POST['t_imo']) ? $_POST['t_imo'] : NULL;
+$tp_imovel = isset($_POST['t_imo']) ? $_POST['t_imo'] : NULL; 
 $sb_tp_imovel = isset($_POST['sbt_imo']) ? $_POST['sbt_imo'] : NULL;
 $categoria = isset($_POST['cat']) ? $_POST['cat'] : NULL;
 $cep = isset($_POST['cep']) ? $_POST['cep'] : NULL;
@@ -89,11 +91,10 @@ $QuadradeSquash = isset($_POST['QuadradeSquash']) ? $_POST['QuadradeSquash']  :N
 $QuadradeTenis = isset($_POST['QuadradeTenis']) ? $_POST['QuadradeTenis']  :NULL;
 $QuadraPoliesportiva = isset($_POST['QuadraPoliesportiva']) ?  $_POST['QuadraPoliesportiva'] :NULL;
 $SaladeGinastica = isset($_POST['SaladeGinastica']) ? $_POST['SaladeGinastica']  :NULL;
-$SalaoFestas = isset($_POST['SalaoFestas']) ? $_POST['SalaoFestas']  :NULL;
+$SalaoFestas = isset($_POST['SalaodeFestas']) ? $_POST['SalaodeFestas']  :NULL;
 $SalaoJogos  = isset($_POST['SalaoJogos']) ? $_POST['SalaoJogos']  :NULL;
 $Sauna = isset($_POST['Sauna']) ? $_POST['Sauna']  :NULL;
 $Vestiario = isset($_POST['Vestiario']) ? $_POST['Vestiario']  :NULL;
-$principal = NULL;
 
 
 #INICIA CONEXÃO COM O BANCO DE DADOS
@@ -141,12 +142,11 @@ $query_imoveis = "INSERT INTO imoveis
 							texto,
 							status,
 							click,
-							zap,
-							principal) 
+							zap) 
 							VALUES 
-							('$locacao',
-							'$venda',
-							'$temporada',
+							('$transacao',
+							'$transacao1',
+							'$transacao2',
 							'$tp_imovel',
 							'$sb_tp_imovel',
 							'$categoria',
@@ -184,15 +184,12 @@ $query_imoveis = "INSERT INTO imoveis
 							'$texto',
 							'$status',
 							0,
-							'$zap',
-							'$principal');";
-
+							'$zap');";
 
 $result_imoveis = mysqli_query($conexao,$query_imoveis) or die(mysql_error());
 
 ################################################################################
 $imoid = mysqli_insert_id($conexao);
-
 $query_imoveis_caracteristicas = "INSERT INTO caracteristicas_imovel
 											(AndarInteiro,
 											ArCondicionado,
@@ -273,11 +270,7 @@ $query_imoveis_caracteristicas = "INSERT INTO caracteristicas_imovel
 											'$Sauna',
 											'$Vestiario',
 											'$imoid');";
-
-
-
 $result_caracteristicas_imoveis = mysqli_query($conexao,$query_imoveis_caracteristicas) or die(mysql_error());
-
 
 
 #VERIFICA SE FOI SALVO OS DADOS DO IMÓVEL NO BANCO DE DADOS
@@ -285,35 +278,50 @@ if($result_imoveis && $result_caracteristicas_imoveis){
 	$dadossalvos = True;
 }
 
+
 #CRIA DIRETÓRIO
 #$dirformated = iconv("UTF-8","Windows-1252",$dir);
 $createddir = mkdir($dir,0777, true);
+
 $upload  = false;
-
-
 #EXECUTA O LAÇO PARA AS 'N' IMAGENS INSERIDAS NO UPLOAD
 foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
-    $file_name = $_FILES['files']['name'][$key];
-    $file_size =$_FILES['files']['size'][$key];
-    $file_tmp =$_FILES['files']['tmp_name'][$key];
-    $file_type=$_FILES['files']['type'][$key];
+    #$file_name = $_FILES['files']['name'][$key];
+    #$file_size =$_FILES['files']['size'][$key];
+    #$file_tmp =$_FILES['files']['tmp_name'][$key];
+    #$file_type=$_FILES['files']['type'][$key];
+    
+    	$imagename = $_FILES['files']['name'][$key];
+    	
+        $source = $_FILES['files']['tmp_name'][$key];
+        
+        $target = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$imagename;
+        #$target = $_SERVER['DOCUMENT_ROOT'].'/AitaImobiliaria/'.$dir.'/'.$imagename;
+        
+        $moved = move_uploaded_file($source, $target);
+        
+
+        $imagepath = $imagename;
+
+        #$save = $_SERVER['DOCUMENT_ROOT'].'/AitaImobiliaria/'.$dir.'/'. $imagepath; //This is the new file you saving
+        $save = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'. $imagepath; //This is the new file you saving
+        #$file = $_SERVER['DOCUMENT_ROOT'].'/AitaImobiliaria/'.$dir.'/'. $imagepath; //This is the original file
+        $file = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'. $imagepath; //This is the original file
+
+        list($width, $height) = getimagesize($file);
+
+
+        $tn = imagecreatetruecolor($width, $height);
+        $image = imagecreatefromjpeg($file);
+        imagecopyresampled($tn, $image, 0, 0, 0, 0, $width, $height, $width, $height);
+
+        imagejpeg($tn, $save, 50);
+
+
 
     #MOVE IMAGEM UPLOAD PARA DIRETÓRIO ESPECIFICADO
-    $upload = move_uploaded_file($file_tmp, $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$file_name);
+    #$upload = move_uploaded_file($file_tmp, $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$file_name);
 
-    #$save = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$file_name; //This is the new file you saving
-    #$file = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$file_name; //This is the original file
-
-    #list($width, $height) = getimagesize($file); 
-
-
-    #$tn = imagecreatetruecolor($width, $height) ; 
-    #$image = imagecreatefromjpeg($file) ; 
-    #imagecopyresampled($tn, $image, 0, 0, 0, 0, $width, $height, $width, $height) ; 
-
-    #imagejpeg($tn, $save, 50) ;
-
-    #SALVA INFORMAÇÕES DAS IMAGENS NO BANCO DE DADOS
     $query_imagens_imoveis = "INSERT INTO imagens_imo
 											(id,
 											name,
@@ -321,18 +329,15 @@ foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
 											imo)
 											VALUES
 											('$key',
-											'$file_name',
+											'$imagename',
 											'$dir',
 											'$imoid')";
 	
-	
 	$result_imagens = mysqli_query($conexao,$query_imagens_imoveis) or die(mysql_error());
+
     
 }
-
-if($dadossalvos && $upload){
-	header('Location: index.php');	
+if($dadossalvos && $moved){
+	header('Location: admin.php');	
 }
-
-
 ?>

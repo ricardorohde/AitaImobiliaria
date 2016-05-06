@@ -589,3 +589,20 @@ a:hover {
 a:active {
     text-decoration: none;
 }
+
+
+#map {
+        width: 250px;
+        height: 315px;
+      }
+
+
+#map-canvas {
+   margin: 0;
+   padding: 0;
+   height: 250px;
+   max-width: 750px;
+}
+#map-canvas img {
+   max-width: none !important;
+}

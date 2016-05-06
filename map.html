@@ -1,41 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+  <head>
 
-	<?php
-		include "head.php";
-	?>
-
-	<body link="#05619b" vlink="#05619b" alink="#05619b">
-		<div id="main_container">
-			<?php
-				include "header.php";
-			?>
-
-			<div id="main_content">
-				<?php
-					include "colum1.php";
-				?>
-			
-			
-				<?php
-					include "colum2.php";
-				?>
-			
-			
-				<?php
-					include "colum3.php";
-				?>
-			
-			
-				<?php
-					include "colum4.php";
-				?>
-			</div>
-			<?php
-				include "footer.php";
-			?>
-		</div>
-	<script>
+  <meta charset="UTF-8">
+    <style>
+      #map {
+        width: 500px;
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
       function initMap() {
         var latlong = {lat: -30.0521863, lng: -51.216759000000025}; 
         var mapDiv = document.getElementById('map');
@@ -73,5 +50,5 @@
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
         async defer></script>
-	</body>
+  </body>
 </html>

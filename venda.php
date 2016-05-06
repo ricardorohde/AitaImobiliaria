@@ -17,19 +17,19 @@
       <div class="title">Venda</div>
       <?php
         require "db-conection.php";
-        $result = mysqli_query($conexao,utf8_encode("SELECT * FROM imoveis WHERE transacao = 'Venda'")) or die(mysql_error());
+        $result = mysqli_query($conexao,utf8_encode("SELECT * FROM imoveis WHERE transacao1 = 'Venda' AND status = 'Ativo'")) or die(mysql_error());
         while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)){
           $id = $row["id"];
           $result_imagem = mysqli_query($conexao,utf8_encode("SELECT * FROM  imagens_imo WHERE imo = $id AND name LIKE '00%' LIMIT 1 ")) or die(mysql_error());
           $obj = mysqli_fetch_array($result_imagem,MYSQLI_ASSOC);
       ?>
       <div class="offer_box_wide"> 
-        <a href="imovel.php?idimo=<?php echo $row["id"]; ?>">
+        <a href="imovel.php?idimo=<?php echo $row["id"]; ?>&type=V">
           <img src="<?php echo $obj["dir"].'/'.$obj["name"] ?>" width="130" height="98" class="img_left" alt="" border="0" />
         </a>
         <div class="offer_info"> 
           <span>
-            <a href="imovel.php?idimo=<?php echo $row["id"]; ?>">
+            <a href="imovel.php?idimo=<?php echo $row["id"]; ?>&type=V">
              <?php
               
               if(!empty($row["nm_empr"])){

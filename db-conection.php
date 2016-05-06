@@ -1,11 +1,11 @@
 <?php
 	#LOGIN LOCAL SERVER
-	#$username = "root";
-	#$password = "";
+	$username = "root";
+	$password = "root";
 	
 	#LOGIN PRODUCTION SERVER
-	$username = "master";
-	$password = "master";
+	#$username = "master";
+	#$password = "master";
 	$hostname = "localhost"; 
 	$db = "web_data";
 

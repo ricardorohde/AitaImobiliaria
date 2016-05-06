@@ -17,6 +17,7 @@
     <?php
       require "db-conection.php";
       $idimovel = $_GET['idimo'];
+      $type = $_GET['type'];
       $result_imovel = mysqli_query($conexao,"SELECT * FROM imoveis WHERE id = $idimovel") or die(mysql_error());
       $result_imagens = mysqli_query($conexao,"SELECT * FROM imagens_imo WHERE imo = $idimovel") or die(mysql_error());
       $result_f_m = mysqli_query($conexao,"SELECT * FROM imagens_imo WHERE imo = $idimovel AND name LIKE '00%' LIMIT 1") or die(mysql_error());
@@ -28,6 +29,8 @@
       $click = $obj_imovel->click + 1;
 
       $up = mysqli_query($conexao,"UPDATE imoveis SET click=$click WHERE id=$idimovel")or die(mysql_error());
+
+      $emap = $obj_imovel->endereco . " " . $obj_imovel->complemento. " ". $obj_imovel->cidade. " ". $obj_imovel->complemento;
     ?>
 
 
@@ -39,7 +42,9 @@
                   }
                     else {echo $obj_imovel->tp_imovel." ".$obj_imovel->endereco;}
                 ?></div>
+    <div id="map-canvas"></div>
     </div>
+
     <!-- end of column four -->
     <div class="column2" style="background-color:#f3f5f6; margin-left:5px;">
       <div class="big_pic"><img src="<?php echo $obj->dir.'/'.$obj->name ?>" width="282" height="212" alt="" class="img_big_pic" /></div>
@@ -58,26 +63,38 @@
             </a>
           </li>
         </ul>
-         <!-- <img class="img-responsive" src="<?php echo $obj_imovel->dir.'/'.$i.'.jpg' ?>" alt="" height="340" width="255">-->
-                </div>
+      </div>
               <?php
                   }
                 }else echo "Não existe imagens cadastradas!";
               ?>
-              </div>
-      </div>
+
     </div>
+
+      </div>
+
+    </div>
+
     <!-- end of column two -->
     <div class="column3">
       <div class="main_text_box">
         <h1><?php 
                   setlocale(LC_MONETARY,"pt_BR", "ptb");
 
-                  if($obj_imovel->transacao == 'Locação'){ 
-                    echo (money_format('%n', $obj_imovel->v_aluguel));
-                  }else if($obj_imovel->transacao == 'Venda'){ 
-                    echo (money_format('%n', $obj_imovel->v_t_venda));
-                  }
+                  if(!empty($type)){
+
+                    if($type == 'A' || $type == 'AT'){ 
+                      echo (money_format('%n', $obj_imovel->v_aluguel));
+                    }elseif($type == 'V'){ 
+                      echo (money_format('%n', $obj_imovel->v_t_venda));
+                    }
+                }else{
+                   if($obj_imovel->transacao == 'Aluguel' || $obj_imovel->transacao2 == 'Aluguel Temporada'){ 
+                      echo (money_format('%n', $obj_imovel->v_aluguel));
+                    }elseif($obj_imovel->transacao1 == 'Venda'){ 
+                      echo (money_format('%n', $obj_imovel->v_t_venda));
+                    }
+                }
                 ?></h1>
         <div class="GeneratedTextJustify"> <?php echo ($obj_imovel->texto) ?> </div>
       </div>
@@ -85,9 +102,34 @@
       <div class="details_list">
         <ul>
           <?php
-            if(!empty($obj_imovel->transacao)){
+            if(!empty($obj_imovel->transacao)||!empty($obj_imovel->transacao1)||!empty($obj_imovel->transacao2)){
           ?>
-            <li><span>Transação: </span><?php echo $obj_imovel->transacao ?> </li>
+            <li><span>Transação: </span>
+            <?php 
+
+              if(!empty($type)){
+                if($type =='A'){
+                  echo $obj_imovel->transacao;
+                }elseif ($type =='V') {
+                  echo $obj_imovel->transacao1;
+                  
+                }elseif ($type =='AT') {
+                   echo $obj_imovel->transacao2;
+                }
+              }else{
+                if($obj_imovel->transacao =='Aluguel'){
+                  echo $obj_imovel->transacao;
+                }elseif ($obj_imovel->transacao1 =='Venda') {
+                  echo "|" . $obj_imovel->transacao1;
+                  
+                }elseif ($obj_imovel->transacao2 =='Aluguel Temporada') {
+                   echo "|" . $obj_imovel->transacao2;
+                }
+              }
+               
+            ?> 
+            </li>
+              
           <?php
             }
           ?>
@@ -219,12 +261,12 @@
                 ?>
                 <?php
                   if(!empty($obj_imovel->isento)){
-                    if($obj_imovel->isento ='S'){
-                      echo("<li><span>Isento de Condomínio: </span>Sim</li>");
+                    if($obj_imovel->isento =='S'){
+                      echo('<li><span>Isento de Condomínio: </span>Sim</li>');
                       }
                         
                       else{
-                      echo("<li><span>Isento de Condomínio: </span>Não</li>");
+                      echo('<li><span>Isento de Condomínio: </span>Não</li>');
                     }
                 
                   }
@@ -649,20 +691,110 @@
                 ?>
         </ul>
       </div>
+      <?php
+      $send = NULL;
+        if(!empty($type)){
+                if($type =='A'){
+                  $send = $obj_imovel->transacao;
+                }elseif ($type =='V') {
+                  $send = $obj_imovel->transacao1;
+                  
+                }elseif ($type =='AT') {
+                   $send = $obj_imovel->transacao2;
+                }
+              }else{
+                if($obj_imovel->transacao =='Aluguel'){
+                  $send .= $obj_imovel->transacao;
+                }elseif ($obj_imovel->transacao1 =='Venda') {
+                  $send .= "|" . $obj_imovel->transacao1;
+                  
+                }elseif ($obj_imovel->transacao2 =='Aluguel Temporada') {
+                   $send .= "|" . $obj_imovel->transacao2;
+                }
+              }
+      ?>
       <div style="float:left;">
-        <div class="button"><a href="contact.php?iassunto=<?php echo $obj_imovel->transacao . $obj_imovel->tp_imovel . $obj_imovel->endereco . $obj_imovel->numero .$obj_imovel->complemento; ?>">Interessado</a></div>
+        <div class="button"><a href="contact.php?iassunto=<?php echo $send .' '. $obj_imovel->tp_imovel .' '. $obj_imovel->endereco .' '. $obj_imovel->numero .' '.$obj_imovel->complemento; ?>">Interessado</a></div>
       </div>
       <!-- end of column three -->
+
     </div>
+
     <!-- end of main_content -->
     <?php
         include "footer.php";
       ?>
   </div>
+
 </div>
 <!-- end of main_container -->
 <!-- JAVASCRIPT -->
     <script src="js/jQuery.js"></script>
     <script src="js/lightbox.js"></script>
+    <script type="text/javascript">
+      /*
+ * Aprende Google Maps Geocoding através de exemplos
+ * Miguel Marnoto
+ * 2015 - www.marnoto.com
+ *
+ */
+
+var map;
+var marker;
+
+
+function initialize() {
+
+  var mapOptions = {
+    center: new google.maps.LatLng(40.680898,-8.684059),
+    zoom: 11,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+  map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+  searchAddress();
+
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+
+function searchAddress() {
+
+  var addressInput = <?php echo json_encode("$emap"); ?>;
+  
+
+  var geocoder = new google.maps.Geocoder();
+
+  geocoder.geocode({address: addressInput}, function(results, status) {
+
+    if (status == google.maps.GeocoderStatus.OK) {
+
+      var myResult = results[0].geometry.location;
+
+      createMarker(myResult);
+
+      map.setCenter(myResult);
+
+      map.setZoom(17);
+    }
+  });
+
+}
+
+function createMarker(latlng) {
+
+  if(marker != undefined && marker != ''){
+    marker.setMap(null);
+    marker = '';
+  }
+
+  marker = new google.maps.Marker({
+    map: map,
+    position: latlng
+  });
+}
+    </script>
 </body>
 </html>

@@ -5,7 +5,8 @@
     <meta name="author" content="">
 
     <title>Aita Imóveis</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" type="text/css" href="admin.css" />
@@ -18,4 +19,7 @@
         header('Content-Type: text/html; charset=utf-8');
     ?>
 
+     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <!--<script type="text/javascript" src="js/map.js"></script>-->
+    
 </head>

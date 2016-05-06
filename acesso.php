@@ -13,7 +13,7 @@
       <div class="left_box">
         <div class="top_left_box"> </div>
         <div class="center_left_box">
-          <div class="box_title"><span>Admin</span> login</div>
+          <div class="box_title"><span>Acesso</span> Painel de Controle</div>
           <form method="post" action="login.php">
     <div>
       <input type="text" name="usuario" placeholder="Usuário">

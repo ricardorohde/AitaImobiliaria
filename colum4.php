@@ -1,4 +1,4 @@
-<div class="column4">
+<div class="column4"> 
       <div class="title">Imóveis</div>
       <?php
         require "db-conection.php";

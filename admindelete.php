@@ -4,7 +4,7 @@
 	$dadosimoveisdeletados = False;
 	$dadoscaracteristicasdeletados = False;
 	$imagensimoveisdeletados = False;
-
+ 
 	$idimovel = $_GET['idimo'];
 
 	$queryimoveldelete = "DELETE FROM imoveis WHERE id = $idimovel";

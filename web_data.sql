@@ -3,7 +3,7 @@ user VARCHAR(30) PRIMARY KEY,
 password VARCHAR(30),
 reg_date TIMESTAMP
 );
-
+  
 CREATE TABLE imoveis(
 id INT(4) AUTO_INCREMENT PRIMARY KEY,
 transacao VARCHAR(255),

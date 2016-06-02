@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 session_start(); // Inicia a session
 

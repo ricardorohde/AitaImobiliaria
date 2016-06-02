@@ -8,7 +8,7 @@
       <?php
         include "header.php";
       ?>
-
+ 
   <div id="main_content">
     <div id="admin_header">
       <div class="admin_index_title">Gerenciador de Ofertas</div>
@@ -42,19 +42,19 @@
           <th style="width:10px;"><a href="#" class="pink">Deletar</a></th>
         </tr>
         <?php
-          require "db-conection.php";
-          $count = 0;
-        $result = mysqli_query($conexao,"SELECT * FROM imoveis WHERE status = 'Ativo'") or die(mysql_error());
-        while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)){
-          $id = $row["id"];
-          $result_imagem = mysqli_query($conexao,"SELECT * FROM  imagens_imo WHERE imo = $id AND name LIKE '00%' LIMIT 1 ") or die(mysql_error());
-          $obj = mysqli_fetch_array($result_imagem,MYSQLI_ASSOC);
+			require "db-conection.php";
+			$count = 0;
+			$result = mysqli_query($conexao,"SELECT * FROM imoveis") or die(mysql_error());
+			while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+				$id = $row["id"];
+				$result_imagem = mysqli_query($conexao,"SELECT * FROM  imagens_imo WHERE imo = $id AND name LIKE '00%' LIMIT 1 ") or die(mysql_error());
+				$obj = mysqli_fetch_array($result_imagem,MYSQLI_ASSOC);
           
-          if($count%2){
-            echo '<tr class="even">';
-          }else{
-            echo '<tr class="odd">';
-          }
+				if($count%2){
+					echo '<tr class="even">';
+				}else{
+					echo '<tr class="odd">';
+				}
         ?>
         <!-- Imóveis -->
           <td><input type="checkbox" name="checkbox" /></td>
@@ -68,23 +68,24 @@
               }else{
                 echo ($row["tp_imovel"]." ".$row["endereco"]);
               }
-            ?></td>
+            ?>
+			</td>
           <td><?php echo (substr($row["texto"], 0,140)) ?></td>
           <td>
             <?php 
-              if(!empty(($row["transacao"]))){
-                echo ($row["transacao"]); 
-                }
-              if(!empty(($row["transacao1"]))){
-                echo ",";
-                echo "<br>";
-                echo ($row["transacao1"]); 
-                }
-              if(!empty(($row["transacao2"]))){
-                echo ",";
-                echo "<br>";
-                echo ($row["transacao2"]); 
-                }
+              //if(!empty(($row["transacao"]))){
+                //echo ($row["transacao"]); 
+                //}
+              //if(!empty(($row["transacao1"]))){
+                //echo ",";
+                //echo "<br>";
+                //echo ($row["transacao1"]); 
+                //}
+              //if(!empty(($row["transacao2"]))){
+                //echo ",";
+                //echo "<br>";
+                //echo ($row["transacao2"]); 
+                //}
             ?>
           </td>
           <td><?php echo ($row["sb_tp_imovel"]) ?></td>
@@ -92,7 +93,7 @@
           <td><strong><?php 
                   setlocale(LC_MONETARY,"pt_BR", "ptb");
 
-                  if($row["transacao"] == 'Aluguel'||$row["transacao"] == 'Aluguel Temporada'){ 
+                  if($row["transacao"] == 'Aluguel'||$row["transacao2"] == 'Aluguel Temporada'){ 
                     echo (money_format('%n', $row["v_aluguel"]));
                   }else if($row["transacao1"] == 'Venda'){ 
                     echo (money_format('%n', $row["v_t_venda"]));

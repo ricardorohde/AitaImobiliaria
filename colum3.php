@@ -1,7 +1,7 @@
 <div class="column3">
       <div class="small_title">
         Imóveis mais Acessados
-      </div>
+      </div> 
       <?php
         require "db-conection.php";
         $result_imoveis = mysqli_query($conexao,"SELECT * FROM imoveis WHERE status = 'Ativo' ORDER BY imoveis.click DESC LIMIT 3 ") or die(mysql_error());

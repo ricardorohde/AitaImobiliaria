@@ -1,7 +1,7 @@
 <form action="" method="post" enctype="multipart/form-data" id="something" class="uniForm">
     <input name="files[]" id="files" size="30" type="file" class="fileUpload" multiple/>
     <button name="submit" type="submit" class="submitButton">Upload/Resize Image</button>
-
+ 
 <?php
   
 

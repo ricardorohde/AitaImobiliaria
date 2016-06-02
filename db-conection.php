@@ -1,4 +1,4 @@
-<?php
+<?php 
 	#LOGIN LOCAL SERVER
 	$username = "root";
 	$password = "root";

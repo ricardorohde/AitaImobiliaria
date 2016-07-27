@@ -21,5 +21,9 @@
 
      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <!--<script type="text/javascript" src="js/map.js"></script>-->
+    <!-- JAVASCRIPT -->
+    <script type='text/javascript' src='js/cep.js'></script>
+    <script src="js/jQuery.js"></script>
+    <script src="js/lightbox.js"></script>
     
 </head>

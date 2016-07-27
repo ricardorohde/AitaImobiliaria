@@ -1,56 +1,41 @@
-<form action="" method="post" enctype="multipart/form-data" id="something" class="uniForm">
-    <input name="files[]" id="files" size="30" type="file" class="fileUpload" multiple/>
-    <button name="submit" type="submit" class="submitButton">Upload/Resize Image</button>
- 
+<form action="" enctype="multipart/form-data" method="post">
+    <input name="file" type="file" />
+    <input name="submit" type="submit" value="Upload File" />
+</form>
+
 <?php
-  
+    $ftp_server = "aitaimoveis.com.br";
+    $ftp_user_name = "aitaimoveis";
+    $ftp_user_pass = "nala2702";
+    $destination_file = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/';
+    $source_file = $_FILES['file']['tmp_name']; 
 
-    if(isset($_POST['submit'])){
-      if (isset ($_FILES['files'])){
+    // set up basic connection
+    $conn_id = ftp_connect($ftp_server);
+    ftp_pasv($conn_id, true); 
 
-        foreach ($_FILES['files']['tmp_name'] as $key => $tmp_name) {
-          
-          $imagename = $_FILES['files']['name'][$key];
-          $source = $_FILES['files']['tmp_name'][$key];
-          $target = "images/".$imagename;
-          move_uploaded_file($source, $target);
+    // login with username and password
+    $login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass); 
 
-          $imagepath = $imagename;
+    // check connection
+    if ((!$conn_id) || (!$login_result)) { 
+        echo "FTP connection has failed!";
+        echo "Attempted to connect to $ftp_server for user $ftp_user_name"; 
+        exit; 
+    } else {
+        echo "Connected to $ftp_server, for user $ftp_user_name";
+    }
 
-          $save = "images/" . $imagepath; //This is the new file you saving
-          $file = "images/" . $imagepath; //This is the original file
+    // upload the file
+    $upload = ftp_put($conn_id, $destination_file, $source_file, FTP_BINARY); 
 
-          list($width, $height) = getimagesize($file);
+    // check upload status
+    if (!$upload) { 
+        echo "FTP upload has failed!";
+    } else {
+        echo "Uploaded $source_file to $ftp_server as $destination_file";
+    }
 
-
-          $tn = imagecreatetruecolor($width, $height);
-          $image = imagecreatefromjpeg($file);
-          imagecopyresampled($tn, $image, 0, 0, 0, 0, $width, $height, $width, $height);
-
-          imagejpeg($tn, $save, 50);
-  }
-          
-
-          #$save = "images/sml_" . $imagepath; //This is the new file you saving
-          #$file = "images/" . $imagepath; //This is the original file
-
-          #list($width, $height) = getimagesize($file) ; 
-
-          #$modwidth = 130; 
-
-          #$diff = $width / $modwidth;
-
-          #$modheight = 185; 
-          #$tn = imagecreatetruecolor($modwidth, $modheight) ; 
-          #$image = imagecreatefromjpeg($file) ; 
-          #imagecopyresampled($tn, $image, 0, 0, 0, 0, $modwidth, $modheight, $width, $height) ; 
-
-          #imagejpeg($tn, $save, 70) ; 
-        #echo "Large image: <img src='images/".$imagepath."'><br>"; 
-        #echo "Thumbnail: <img src='images/sml_".$imagepath."'>"; 
-
-      }
-    } 
-
-
+    // close the FTP stream 
+    ftp_close($conn_id);
 ?>

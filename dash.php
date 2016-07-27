@@ -333,6 +333,14 @@
 
                         <div class="row control-group">
                             <div class="adminform_row_contact">
+                                <label class="adminleft">Anuncio:</label>
+                                <input type="text" class="form-control" placeholder="Chamada Anuncio" name="anuncio" id="anuncio" required data-validation-required-message="Por favor insira um anúncio">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+
+                        <div class="row control-group">
+                            <div class="adminform_row_contact">
                                 <label class="adminleft">Texto do Anúncio:</label>
                                 <textarea rows="5" class="form-control" placeholder="Texto do Anúncio" name="texto" id="texto" required data-validation-required-message="Por favor insira seu Texto do Anúncio."></textarea>
                                 <p class="help-block text-danger"></p>

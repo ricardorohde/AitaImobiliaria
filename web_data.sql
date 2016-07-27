@@ -46,7 +46,8 @@ ano_contrucao INT(4),
 texto BLOB,
 zap VARCHAR(255),
 status VARCHAR(255),
-click INT(6)
+click INT(6),
+anuncio VARCHAR(255)
 );
 
 CREATE TABLE caracteristicas_imovel(

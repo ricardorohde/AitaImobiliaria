@@ -30,19 +30,20 @@
 
       $up = mysqli_query($conexao,"UPDATE imoveis SET click=$click WHERE id=$idimovel")or die(mysql_error());
 
-      $emap = $obj_imovel->endereco . " " . $obj_imovel->complemento. " ". $obj_imovel->cidade. " ". $obj_imovel->complemento;
+      $emap = $obj_imovel->endereco . " " . $obj_imovel->numero. " ".$obj_imovel->bairro." ". $obj_imovel->cidade. " ". $obj_imovel->estado;
     ?>
 
 
 
     <div class="column4">
-      <div class="title"><?php
-                   if(!empty($obj_imovel->nm_empr)){
-                    echo $obj_imovel->nm_empr;
-                  }
-                    else {echo $obj_imovel->tp_imovel." ".$obj_imovel->endereco;}
-                ?></div>
-    <div id="map-canvas"></div>
+      <div class="title">
+        <?php
+        echo $obj_imovel->anuncio;
+          if(!empty($obj_imovel->nm_empr)){
+            echo '-' . $obj_imovel->nm_empr;
+          }
+        ?>          
+      </div>
     </div>
 
     <!-- end of column four -->
@@ -78,25 +79,25 @@
     <!-- end of column two -->
     <div class="column3">
       <div class="main_text_box">
-        <h1><?php 
-                  setlocale(LC_MONETARY,"pt_BR", "ptb");
-
-                  if(!empty($type)){
-
-                    if($type == 'A' || $type == 'AT'){ 
+        <h4>
+          <?php 
+            setlocale(LC_MONETARY,"pt_BR", "ptb");
+              if(!empty($type)){
+                if($type == 'A' || $type == 'AT'){ 
                       echo (money_format('%n', $obj_imovel->v_aluguel));
-                    }elseif($type == 'V'){ 
+                }elseif($type == 'V'){ 
                       echo (money_format('%n', $obj_imovel->v_t_venda));
-                    }
-                }else{
-                   if($obj_imovel->transacao == 'Aluguel' || $obj_imovel->transacao2 == 'Aluguel Temporada'){ 
-                      echo (money_format('%n', $obj_imovel->v_aluguel));
-                    }elseif($obj_imovel->transacao1 == 'Venda'){ 
-                      echo (money_format('%n', $obj_imovel->v_t_venda));
-                    }
                 }
-                ?></h1>
-        <div class="GeneratedTextJustify"> <?php echo ($obj_imovel->texto) ?> </div>
+                }else{
+                  if($obj_imovel->transacao == 'Aluguel' || $obj_imovel->transacao2 == 'Aluguel Temporada'){ 
+                      echo (money_format('%n', $obj_imovel->v_aluguel));
+                  }elseif($obj_imovel->transacao1 == 'Venda'){ 
+                      echo (money_format('%n', $obj_imovel->v_t_venda));
+                  }
+                }
+          ?>
+        </h4>
+      <div class="GeneratedTextJustify"> <?php echo ($obj_imovel->texto) ?> </div>
       </div>
       <div class="title2">Detalhes</div>
       <div class="details_list">
@@ -718,8 +719,12 @@
       </div>
       <!-- end of column three -->
 
+      
     </div>
 
+    <div class="column5">
+      <div id="map-canvas"></div>
+    </div>
     <!-- end of main_content -->
     <?php
         include "footer.php";
@@ -728,9 +733,7 @@
 
 </div>
 <!-- end of main_container -->
-<!-- JAVASCRIPT -->
-    <script src="js/jQuery.js"></script>
-    <script src="js/lightbox.js"></script>
+
     <script type="text/javascript">
       /*
  * Aprende Google Maps Geocoding através de exemplos
@@ -764,13 +767,14 @@ function searchAddress() {
 
   var addressInput = <?php echo json_encode("$emap"); ?>;
   
+ 
 
   var geocoder = new google.maps.Geocoder();
 
   geocoder.geocode({address: addressInput}, function(results, status) {
 
     if (status == google.maps.GeocoderStatus.OK) {
-
+      
       var myResult = results[0].geometry.location;
 
       createMarker(myResult);

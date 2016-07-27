@@ -33,6 +33,15 @@ padding:5px 0 5px 10px;
 margin: auto;
 text-decoration:none;
 }
+h4{
+font-size:20px;
+font-weight:bold;
+color:#0f3753;
+width: auto;
+padding:0px 0 5px 0;
+margin: auto;
+text-decoration:none;
+}
 p{
 font-size:13px;
 padding:2px;
@@ -203,6 +212,12 @@ float:left;
 margin:0px;
 padding:10px 0px 10px 5px;
 }
+.column5{
+width:1000px;
+float:left;
+margin:0px;
+padding:10px 0px 10px 5px;
+}
 .left_box{
 width:257px;
 height:auto;
@@ -257,6 +272,7 @@ width:670px;
 padding:5px 5px 5px 20px;
 color:#FFFFFF;
 font-weight:bold;
+font-size: 20px;
 }
 .small_title{
 background-color:#385870;
@@ -292,7 +308,8 @@ background:url(images/bullet.gif) no-repeat left;
 color:#333333;
 }
 .details_list ul li span{
-color:#0464a1;
+color: black;
+font-weight:bold;
 }
 .button{
 width:139px;
@@ -598,10 +615,10 @@ a:active {
 
 
 #map-canvas {
-   margin: 0;
-   padding: 0;
+   margin: 0px 0px 0px 280px;
+   padding: 0px 0px 0px 0px;
    height: 250px;
-   max-width: 750px;
+   max-width: 685px;
 }
 #map-canvas img {
    max-width: none !important;

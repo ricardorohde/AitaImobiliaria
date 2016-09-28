@@ -1,5 +1,6 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
+<<<<<<< HEAD
 $name = ''; $type = ''; $size = ''; $error = '';
 
 #$sdr = $_SERVER['DOCUMENT_ROOT'];
@@ -8,6 +9,14 @@ $name = ''; $type = ''; $size = ''; $error = '';
 include "db-conection.php";
 
 
+=======
+
+
+
+#INICIA CONEXÃO COM O BANCO DE DADOS
+include "db-conection.php";
+
+>>>>>>> dd9213841f285480552262eed3564324e47f377b
 #CRIA VARIÁVEIS COM OS DADOS INFORMADOS NO FORMULÁRIO
 $transacao = isset($_POST['trans'][0]) ? $_POST['trans'][0]: NULL;
 $size = count($_POST['trans']);
@@ -290,7 +299,24 @@ if(empty($_FILES)){
 	#Cria diretório no sistema de arquivos.
 	
 	$createddir = mkdir($dir,0777, true);
+<<<<<<< HEAD
 	
+=======
+	/*
+	$servidor = "177.86.54.14";
+	$usuario = "aitaimoveis";
+	$senha = "nala2702";
+			$ftp = ftp_connect($servidor);
+		printf("FTP:".$ftp);
+		$login  = ftp_login($ftp, $usuario, $senha);
+		if($login){
+			printf("true");
+		}else{
+			printf("false");
+		}
+		printf("LOGIN".$login);
+	*/
+>>>>>>> dd9213841f285480552262eed3564324e47f377b
 
 	foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
     		    
@@ -298,6 +324,7 @@ if(empty($_FILES)){
     	
         $source = $_FILES['files']['tmp_name'][$key];
         
+<<<<<<< HEAD
         #SERVER
         #$target = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$imagename;
         #LOCAL
@@ -319,6 +346,32 @@ if(empty($_FILES)){
                     $filename = compress_image($source, $url, 50);
                     $buffer = file_get_contents($target);
 
+=======
+        $target = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$imagename;
+        #$target = $_SERVER['DOCUMENT_ROOT'].'/AitaImobiliaria/'.$dir.'/'.$imagename;
+        
+        /*ENVIO VIA FTP
+
+		$envia = ftp_put($ftp, $target, $source, FTP_ASCII);
+		if($envia){
+			printf("true");
+		}else{
+			printf("false");
+		}
+		printf("Envia".$envia);
+		*/
+
+        #ENVIO VIA HTTP
+        $moved = move_uploaded_file($source, $target);
+        
+        
+        $imagepath = $imagename;
+
+        #$save = $_SERVER['DOCUMENT_ROOT'].'/AitaImobiliaria/'.$dir.'/'. $imagepath; //This is the new file you saving
+        $save = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'. $imagename; //This is the new file you saving
+        #$file = $_SERVER['DOCUMENT_ROOT'].'/AitaImobiliaria/'.$dir.'/'. $imagepath; //This is the original file
+        $file = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'. $imagename; //This is the original file
+>>>>>>> dd9213841f285480552262eed3564324e47f377b
 
                     #header("Content-Type: application/force-download");
                     #header("Content-Type: application/octet-stream");
@@ -327,6 +380,7 @@ if(empty($_FILES)){
 
                     header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 
+<<<<<<< HEAD
                    
                     header("Content-Type: application/octet-stream");
                     header("Content-Transfer-Encoding: binary");
@@ -340,6 +394,13 @@ if(empty($_FILES)){
             }
 
 
+=======
+        imagejpeg($tn, $save, 50);
+		
+        
+
+
+>>>>>>> dd9213841f285480552262eed3564324e47f377b
     	$query_imagens_imoveis = "INSERT INTO imagens_imo
 											(id,
 											name,
@@ -355,6 +416,7 @@ if(empty($_FILES)){
 
     
 	}
+<<<<<<< HEAD
 }*/
 
 if($result_imoveis && $result_caracteristicas_imoveis && $envia && $result_imagens){
@@ -386,6 +448,39 @@ if($result_imoveis && $result_caracteristicas_imoveis && $envia && $result_image
 	
 }
 
+=======
+	#ftp_close($ftp);
+}
+
+if($result_imoveis && $result_caracteristicas_imoveis && $envia && $result_imagens){
+	echo "<script type='javascript'>alert('Imóvel Cadastrado!');</script>";
+	header('Location: admin.php');
+}else{
+	if(!$result_imoveis){
+		#echo "<script type='javascript'>alert('Imóvel Não Cadastrado!');</script>";
+		echo "Imóvel Não Cadastrado! - ";
+		echo '<a href="www.mypage.com" onclick="window.history.go(-1); return false;"> Voltar </a>';
+		rollback($imoid);
+	}elseif (!$result_caracteristicas_imoveis) {
+		#echo "<script type='javascript'>alert('Carateristicas Imóvel Não Cadastrada!');</script>";
+		echo "Carateristicas Imóvel Não Cadastrada -";
+		echo '<a href="www.mypage.com" onclick="window.history.go(-1); return false;"> Voltar </a>';
+		rollback($imoid);
+	}elseif(!$envia){
+		#echo "<script type='javascript'>alert('Imagens Imóvel Não Efetuaram Upload!');</script>";
+		echo "Imagens Imóvel Não Efetuaram Upload! -";
+		echo '<a href="www.mypage.com" onclick="window.history.go(-1); return false;"> Voltar </a>';
+		rollback($imoid);
+	}else{
+		#echo "<script type='javascript'>alert('Imagens Imóvel Não Cadastrado!');</script>";
+		echo "Imagens Imóvel Não Cadastrado! -";
+		echo '<a href="www.mypage.com" onclick="window.history.go(-1); return false;"> Voltar </a>';
+		rollback($imoid);
+	}
+	
+}
+
+>>>>>>> dd9213841f285480552262eed3564324e47f377b
 
 function rollback($did){
 		$queryimoveldelete = "DELETE FROM imoveis WHERE id = $did";
@@ -397,6 +492,7 @@ function rollback($did){
 		$result_imagens_imoveis = mysqli_query($conexao,$queryimagensdelete) or die(mysql_error());
 }
 
+<<<<<<< HEAD
 function compress_image($source_url, $destination_url, $quality) {
 
         $info = getimagesize($source_url);
@@ -414,4 +510,6 @@ function compress_image($source_url, $destination_url, $quality) {
         return $destination_url;
     }
 
+=======
+>>>>>>> dd9213841f285480552262eed3564324e47f377b
 ?>

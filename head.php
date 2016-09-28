@@ -20,6 +20,7 @@
     ?>
 
      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<<<<<<< HEAD
     
     <!-- JAVASCRIPT -->
     <script src="js/jQuery.js"></script>
@@ -93,5 +94,12 @@
         });
 
     </script>
+=======
+    <!--<script type="text/javascript" src="js/map.js"></script>-->
+    <!-- JAVASCRIPT -->
+    <script type='text/javascript' src='js/cep.js'></script>
+    <script src="js/jQuery.js"></script>
+    <script src="js/lightbox.js"></script>
+>>>>>>> dd9213841f285480552262eed3564324e47f377b
     
 </head>

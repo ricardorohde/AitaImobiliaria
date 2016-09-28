@@ -1,4 +1,4 @@
-#[Projeto Website Aita Imóveis](https://www.facebook.com/imobiliariaaitaimoveis/?fref=ts)
+#[Projeto Website Aita Imóveis](https://www.facebook.com/imobiliariaaitaimoveis/?fref=ts)[![Build Status](https://travis-ci.org/BuoyLabs/AitaImobiliaria.svg?branch=master)](https://travis-ci.org/BuoyLabs/AitaImobiliaria)
 
 ##Ferramentas Utilizadas
 *[Start Bootstrap](http://startbootstrap.com/)

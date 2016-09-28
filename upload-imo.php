@@ -1,7 +1,14 @@
-<?php 
+<?php
 header('Content-Type: text/html; charset=utf-8');
-#CRIA VARIÁVEIS COM OS DADOS INFORMADOS NO FORMULÁRIO
+$name = ''; $type = ''; $size = ''; $error = '';
 
+#$sdr = $_SERVER['DOCUMENT_ROOT'];
+#print $sdr;
+#INICIA CONEXÃO COM O BANCO DE DADOS
+include "db-conection.php";
+
+
+#CRIA VARIÁVEIS COM OS DADOS INFORMADOS NO FORMULÁRIO
 $transacao = isset($_POST['trans'][0]) ? $_POST['trans'][0]: NULL;
 $size = count($_POST['trans']);
 for($i = 0; $i<=$size;$i++){
@@ -56,6 +63,7 @@ $ano_contrucao = isset($_POST['ano']) ? $_POST['ano']  :NULL;
 $texto = isset($_POST['texto']) ? $_POST['texto']  :NULL;
 $status = isset($_POST['status']) ? $_POST['status']  :NULL;
 $zap = isset($_POST['zap']) ? $_POST['zap']  :NULL;
+$anuncio = isset($_POST['anuncio']) ? $_POST['anuncio']  :NULL;
 $dir = $endereco.$numero.$complemento;
 $AndarInteiro = isset($_POST['AndarInteiro']) ? $_POST['AndarInteiro']  :NULL;
 $ArCondicionado = isset($_POST['ArCondicionado']) ? $_POST['ArCondicionado']  :NULL;
@@ -97,10 +105,9 @@ $Sauna = isset($_POST['Sauna']) ? $_POST['Sauna']  :NULL;
 $Vestiario = isset($_POST['Vestiario']) ? $_POST['Vestiario']  :NULL;
 
 
-#INICIA CONEXÃO COM O BANCO DE DADOS
-include "db-conection.php";
+
 #EXECUTA QUERY PARA SALVAR DADOS NO BANCO DE DADOS
-$dadossalvos = False;
+
 $query_imoveis = "INSERT INTO imoveis 
 							(transacao,
 							transacao1,
@@ -142,7 +149,8 @@ $query_imoveis = "INSERT INTO imoveis
 							texto,
 							status,
 							click,
-							zap) 
+							zap,
+							anuncio) 
 							VALUES 
 							('$transacao',
 							'$transacao1',
@@ -184,11 +192,14 @@ $query_imoveis = "INSERT INTO imoveis
 							'$texto',
 							'$status',
 							0,
-							'$zap');";
+							'$zap',
+							'$anuncio');";
 
+print_r($query_imoveis);
+/*
 $result_imoveis = mysqli_query($conexao,$query_imoveis) or die(mysql_error());
-
 ################################################################################
+
 $imoid = mysqli_insert_id($conexao);
 $query_imoveis_caracteristicas = "INSERT INTO caracteristicas_imovel
 											(AndarInteiro,
@@ -273,56 +284,63 @@ $query_imoveis_caracteristicas = "INSERT INTO caracteristicas_imovel
 $result_caracteristicas_imoveis = mysqli_query($conexao,$query_imoveis_caracteristicas) or die(mysql_error());
 
 
-#VERIFICA SE FOI SALVO OS DADOS DO IMÓVEL NO BANCO DE DADOS
-if($result_imoveis && $result_caracteristicas_imoveis){
-	$dadossalvos = True;
-}
+if(empty($_FILES)){
+	echo "<script type='javascript'>alert('Imóvel Não Cadastrado!');</script>";
+}else{
+	#Cria diretório no sistema de arquivos.
+	
+	$createddir = mkdir($dir,0777, true);
+	
 
-
-#CRIA DIRETÓRIO
-#$dirformated = iconv("UTF-8","Windows-1252",$dir);
-$createddir = mkdir($dir,0777, true);
-
-$upload  = false;
-#EXECUTA O LAÇO PARA AS 'N' IMAGENS INSERIDAS NO UPLOAD
-foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
-    #$file_name = $_FILES['files']['name'][$key];
-    #$file_size =$_FILES['files']['size'][$key];
-    #$file_tmp =$_FILES['files']['tmp_name'][$key];
-    #$file_type=$_FILES['files']['type'][$key];
-    
+	foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
+    		    
     	$imagename = $_FILES['files']['name'][$key];
     	
         $source = $_FILES['files']['tmp_name'][$key];
         
-        $target = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$imagename;
-        #$target = $_SERVER['DOCUMENT_ROOT'].'/AitaImobiliaria/'.$dir.'/'.$imagename;
+        #SERVER
+        #$target = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$imagename;
+        #LOCAL
+        $target = $_SERVER['DOCUMENT_ROOT'].'/AitaImobiliaria/'.$dir.'/'.$imagename;
         
-        $moved = move_uploaded_file($source, $target);
-        
 
-        $imagepath = $imagename;
+        if ($_FILES["files"]["error"] > 0) {
+                    $error = $_FILES["file"]["error"];
+            } 
+            else if (($_FILES["file"]["type"] == "image/gif") || 
+            ($_FILES["files"]["type"] == "image/jpeg") || 
+            ($_FILES["files"]["type"] == "image/png") || 
+            ($_FILES["files"]["type"] == "image/pjpeg")) {
 
-        #$save = $_SERVER['DOCUMENT_ROOT'].'/AitaImobiliaria/'.$dir.'/'. $imagepath; //This is the new file you saving
-        $save = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'. $imagepath; //This is the new file you saving
-        #$file = $_SERVER['DOCUMENT_ROOT'].'/AitaImobiliaria/'.$dir.'/'. $imagepath; //This is the original file
-        $file = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'. $imagepath; //This is the original file
-
-        list($width, $height) = getimagesize($file);
-
-
-        $tn = imagecreatetruecolor($width, $height);
-        $image = imagecreatefromjpeg($file);
-        imagecopyresampled($tn, $image, 0, 0, 0, 0, $width, $height, $width, $height);
-
-        imagejpeg($tn, $save, 50);
+                    #SERVER
+                    #$url = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$imagename;
+                    #LOCAL
+                    $url = $_SERVER['DOCUMENT_ROOT'].'/AitaImobiliaria/'.$dir.'/'.$imagename;
+                    $filename = compress_image($source, $url, 50);
+                    $buffer = file_get_contents($target);
 
 
+                    #header("Content-Type: application/force-download");
+                    #header("Content-Type: application/octet-stream");
+                    #header("Content-Type: application/download");
 
-    #MOVE IMAGEM UPLOAD PARA DIRETÓRIO ESPECIFICADO
-    #$upload = move_uploaded_file($file_tmp, $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$file_name);
 
-    $query_imagens_imoveis = "INSERT INTO imagens_imo
+                    header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+
+                   
+                    header("Content-Type: application/octet-stream");
+                    header("Content-Transfer-Encoding: binary");
+                    header("Content-Length: " . strlen($buffer));
+                    header("Content-Disposition: attachment; filename=$url");
+
+
+                    echo $buffer;
+            }else {
+                    $error = "Uploaded image should be jpg or gif or png";
+            }
+
+
+    	$query_imagens_imoveis = "INSERT INTO imagens_imo
 											(id,
 											name,
 											dir,
@@ -333,11 +351,67 @@ foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
 											'$dir',
 											'$imoid')";
 	
-	$result_imagens = mysqli_query($conexao,$query_imagens_imoveis) or die(mysql_error());
+		$result_imagens = mysqli_query($conexao,$query_imagens_imoveis) or die(mysql_error());
 
     
+	}
+}*/
+
+if($result_imoveis && $result_caracteristicas_imoveis && $envia && $result_imagens){
+	echo "<script type='javascript'>alert('Imóvel Cadastrado!');</script>";
+	header('Location: admin.php');
+}else{
+	if(!$result_imoveis){
+		#echo "<script type='javascript'>alert('Imóvel Não Cadastrado!');</script>";
+		echo "Imóvel Não Cadastrado! - ";
+		echo '<a href="www.mypage.com" onclick="window.history.go(-1); return false;"> Voltar </a>';
+		rollback($imoid);
+	}elseif (!$result_caracteristicas_imoveis) {
+		#echo "<script type='javascript'>alert('Carateristicas Imóvel Não Cadastrada!');</script>";
+		echo "Carateristicas Imóvel Não Cadastrada -";
+		echo '<a href="www.mypage.com" onclick="window.history.go(-1); return false;"> Voltar </a>';
+		rollback($imoid);
+	}elseif(!$envia){
+		#echo "<script type='javascript'>alert('Imagens Imóvel Não Efetuaram Upload!');</script>";
+		echo "Imagens Imóvel Não Efetuaram Upload! -";
+		echo '<a href="www.mypage.com" onclick="window.history.go(-1); return false;"> Voltar </a>';
+		rollback($imoid);
+		rmdir($dir);
+	}else{
+		#echo "<script type='javascript'>alert('Imagens Imóvel Não Cadastrado!');</script>";
+		echo "Imagens Imóvel Não Cadastrado! -";
+		echo '<a href="www.mypage.com" onclick="window.history.go(-1); return false;"> Voltar </a>';
+		rollback($imoid);
+	}
+	
 }
-if($dadossalvos && $moved){
-	header('Location: admin.php');	
+
+
+function rollback($did){
+		$queryimoveldelete = "DELETE FROM imoveis WHERE id = $did";
+		$querycaracteristicasdelete = "DELETE FROM caracteristicas_imovel WHERE imo = $did";
+		$queryimagensdelete = "DELETE FROM imagens_imo WHERE imo = $did";
+
+		$result_imoveis = mysqli_query($conexao,$queryimoveldelete) or die(mysql_error());
+		$result_caracteristicas_imoveis = mysqli_query($conexao,$querycaracteristicasdelete) or die(mysql_error());
+		$result_imagens_imoveis = mysqli_query($conexao,$queryimagensdelete) or die(mysql_error());
 }
+
+function compress_image($source_url, $destination_url, $quality) {
+
+        $info = getimagesize($source_url);
+
+            if ($info['mime'] == 'image/jpeg')
+                    $image = imagecreatefromjpeg($source_url);
+
+            elseif ($info['mime'] == 'image/gif')
+                    $image = imagecreatefromgif($source_url);
+
+        elseif ($info['mime'] == 'image/png')
+                    $image = imagecreatefrompng($source_url);
+
+            imagejpeg($image, $destination_url, $quality);
+        return $destination_url;
+    }
+
 ?>

@@ -10,16 +10,17 @@ if(empty($_POST['nome'])  		||
 	
    }
 	
-$nome = utf8_encode($_POST['nome']);
-$email = $_POST['email'];
+$nome = utf8_decode($_POST['nome']);
+$email = utf8_decode($_POST['email']);
 $telefone = $_POST['telefone'];
 $estado = $_POST['estado'];
-$cidade = $_POST['cidade'];
-$assunto = utf8_encode($_POST['assunto']);
+$cidade = utf8_decode($_POST['cidade']);
+$assunto = utf8_decode($_POST['assunto']);
 $mensagem = $_POST['mensagem'];
 	
-$to      = 'contato@aitaimoveis.com.br';
+$to      = 'master@aitaimoveis.com.br';
 $headers = 'From: ' . $email . "\r\n" .
+    'Cc: ' . 'arturaita@hotmail.com' . "\r\n" .
     'Nome: ' .$nome . "\r\n" .
     'Telefone: ' .$telefone . "\r\n" . 
     'Estado: '. $estado . "\r\n" .

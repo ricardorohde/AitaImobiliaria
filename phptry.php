@@ -1,56 +1,53 @@
-<form action="" method="post" enctype="multipart/form-data" id="something" class="uniForm">
-    <input name="files[]" id="files" size="30" type="file" class="fileUpload" multiple/>
-    <button name="submit" type="submit" class="submitButton">Upload/Resize Image</button>
- 
-<?php
+<?php   
+/* 
+ *  Função de busca de Endereço pelo CEP 
+ *  -   Desenvolvido Felipe Olivaes para ajaxbox.com.br 
+ *  -   Utilizando WebService de CEP da republicavirtual.com.br 
+ */  
+function busca_cep($cep){  
+    $resultado = @file_get_contents('http://republicavirtual.com.br/web_cep.php?cep='.urlencode($cep).'&formato=query_string');  
+    if(!$resultado){  
+        $resultado = "&resultado=0&resultado_txt=erro+ao+buscar+cep";  
+    }  
+    parse_str($resultado, $retorno);   
+    return $retorno;  
+}  
   
-
-    if(isset($_POST['submit'])){
-      if (isset ($_FILES['files'])){
-
-        foreach ($_FILES['files']['tmp_name'] as $key => $tmp_name) {
-          
-          $imagename = $_FILES['files']['name'][$key];
-          $source = $_FILES['files']['tmp_name'][$key];
-          $target = "images/".$imagename;
-          move_uploaded_file($source, $target);
-
-          $imagepath = $imagename;
-
-          $save = "images/" . $imagepath; //This is the new file you saving
-          $file = "images/" . $imagepath; //This is the original file
-
-          list($width, $height) = getimagesize($file);
-
-
-          $tn = imagecreatetruecolor($width, $height);
-          $image = imagecreatefromjpeg($file);
-          imagecopyresampled($tn, $image, 0, 0, 0, 0, $width, $height, $width, $height);
-
-          imagejpeg($tn, $save, 50);
-  }
-          
-
-          #$save = "images/sml_" . $imagepath; //This is the new file you saving
-          #$file = "images/" . $imagepath; //This is the original file
-
-          #list($width, $height) = getimagesize($file) ; 
-
-          #$modwidth = 130; 
-
-          #$diff = $width / $modwidth;
-
-          #$modheight = 185; 
-          #$tn = imagecreatetruecolor($modwidth, $modheight) ; 
-          #$image = imagecreatefromjpeg($file) ; 
-          #imagecopyresampled($tn, $image, 0, 0, 0, 0, $modwidth, $modheight, $width, $height) ; 
-
-          #imagejpeg($tn, $save, 70) ; 
-        #echo "Large image: <img src='images/".$imagepath."'><br>"; 
-        #echo "Thumbnail: <img src='images/sml_".$imagepath."'>"; 
-
-      }
-    } 
-
-
-?>
+  
+/* 
+ * Exemplo de utilização  
+ */  
+  
+//Vamos buscar o CEP 90020022  
+$resultado_busca = busca_cep('90020022');  
+  
+echo "<pre> Array Retornada: 
+ ".print_r($resultado_busca, true)."</pre>";  
+  
+switch($resultado_busca['resultado']){  
+    case '2':  
+        $texto = " 
+    Cidade com logradouro único 
+    <b>Cidade: </b> ".$resultado_busca['cidade']." 
+    <b>UF: </b> ".$resultado_busca['uf']." 
+        ";    
+    break;  
+      
+    case '1':  
+        $texto = " 
+    Cidade com logradouro completo 
+    <b>Tipo de Logradouro: </b> ".$resultado_busca['tipo_logradouro']." 
+    <b>Logradouro: </b> ".$resultado_busca['logradouro']." 
+    <b>Bairro: </b> ".$resultado_busca['bairro']." 
+    <b>Cidade: </b> ".$resultado_busca['cidade']." 
+    <b>UF: </b> ".$resultado_busca['uf']." 
+        ";  
+    break;  
+      
+    default:  
+        $texto = "Fala ao buscar cep: ".$resultado_busca['resultado'];  
+    break;  
+}  
+  
+echo $texto;  
+?>  

@@ -2,8 +2,7 @@
 header('Content-Type: text/html; charset=utf-8');
 $name = ''; $type = ''; $size = ''; $error = '';
 
-#$sdr = $_SERVER['DOCUMENT_ROOT'];
-#print $sdr;
+
 #INICIA CONEXÃO COM O BANCO DE DADOS
 include "db-conection.php";
 
@@ -104,7 +103,8 @@ $SalaoJogos  = isset($_POST['SalaoJogos']) ? $_POST['SalaoJogos']  :NULL;
 $Sauna = isset($_POST['Sauna']) ? $_POST['Sauna']  :NULL;
 $Vestiario = isset($_POST['Vestiario']) ? $_POST['Vestiario']  :NULL;
 
-
+print_r($_POST);
+print_r($_FILES);
 
 #EXECUTA QUERY PARA SALVAR DADOS NO BANCO DE DADOS
 
@@ -195,11 +195,8 @@ $query_imoveis = "INSERT INTO imoveis
 							'$zap',
 							'$anuncio');";
 
-print_r($query_imoveis);
-/*
 $result_imoveis = mysqli_query($conexao,$query_imoveis) or die(mysql_error());
 ################################################################################
-
 $imoid = mysqli_insert_id($conexao);
 $query_imoveis_caracteristicas = "INSERT INTO caracteristicas_imovel
 											(AndarInteiro,
@@ -290,7 +287,20 @@ if(empty($_FILES)){
 	#Cria diretório no sistema de arquivos.
 	
 	$createddir = mkdir($dir,0777, true);
-	
+	/*
+	$servidor = "177.86.54.14";
+	$usuario = "aitaimoveis";
+	$senha = "nala2702";
+			$ftp = ftp_connect($servidor);
+		printf("FTP:".$ftp);
+		$login  = ftp_login($ftp, $usuario, $senha);
+		if($login){
+			printf("true");
+		}else{
+			printf("false");
+		}
+		printf("LOGIN".$login);
+	*/
 
 	foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
     		    
@@ -298,42 +308,42 @@ if(empty($_FILES)){
     	
         $source = $_FILES['files']['tmp_name'][$key];
         
-        #SERVER
-        #$target = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$imagename;
-        #LOCAL
-        $target = $_SERVER['DOCUMENT_ROOT'].'/AitaImobiliaria/'.$dir.'/'.$imagename;
+        $target = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$imagename;
+        #$target = $_SERVER['DOCUMENT_ROOT'].'/AitaImobiliaria/'.$dir.'/'.$imagename;
         
 
         if ($_FILES["files"]["error"] > 0) {
                     $error = $_FILES["file"]["error"];
+                    print_r("entrei no if das files");
             } 
             else if (($_FILES["file"]["type"] == "image/gif") || 
             ($_FILES["files"]["type"] == "image/jpeg") || 
             ($_FILES["files"]["type"] == "image/png") || 
             ($_FILES["files"]["type"] == "image/pjpeg")) {
 
-                    #SERVER
-                    #$url = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$imagename;
-                    #LOCAL
-                    $url = $_SERVER['DOCUMENT_ROOT'].'/AitaImobiliaria/'.$dir.'/'.$imagename;
+            	print_r("entrei no elseif das files");
+                    $url = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$imagename;
+
                     $filename = compress_image($source, $url, 50);
+                    print_r($filename);
                     $buffer = file_get_contents($target);
+                    print_r($buffer);
 
-
+                    /* Force download dialog... */
                     #header("Content-Type: application/force-download");
                     #header("Content-Type: application/octet-stream");
                     #header("Content-Type: application/download");
 
-
+            /* Don't allow caching... */
                     header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 
-                   
+                    /* Set data type, size and filename */
                     header("Content-Type: application/octet-stream");
                     header("Content-Transfer-Encoding: binary");
                     header("Content-Length: " . strlen($buffer));
                     header("Content-Disposition: attachment; filename=$url");
 
-
+                    /* Send our file... */
                     echo $buffer;
             }else {
                     $error = "Uploaded image should be jpg or gif or png";
@@ -355,7 +365,7 @@ if(empty($_FILES)){
 
     
 	}
-}*/
+}
 
 if($result_imoveis && $result_caracteristicas_imoveis && $envia && $result_imagens){
 	echo "<script type='javascript'>alert('Imóvel Cadastrado!');</script>";

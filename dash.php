@@ -1,67 +1,67 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<?php 
-    	include "head.php";
-  	?>
-	<body>
-		<div id="main_container">
-  		<?php
-        	include "header.php";
-      	?>
-  		<div id="main_content">
-    	<div id="admin_header">
-      		<div class="admin_addoffer_title">Adicionar Imóvel</div>
-      			<div class="right_buttons">
-        			<div class="right_button"><a href="admin.php">Voltar</a></div>
-      			</div>
-    	</div>
-    	<div id="admin_header_border"></div>
-    	<div class="add_tab">
-      	<form class="form_contact" action="upload-imo.php" name="registreimo" enctype="multipart/form-data" method="post" id="imoForm" novalidate>
-        	<div class="row control-group">
-            	<div class="adminform_row_contact">
-                	<label class="adminleft">Transação:</label>
-                    <label ><input type="checkbox" name="trans[]" id="trans" value="Venda">Venda</label>
-                    <label ><input type="checkbox" name="trans[]" id="trans" value="Aluguel">Locação</label>
-                    <label ><input type="checkbox" name="trans[]" id="trans" value="Aluguel Temporada">Locação Temporada</label>
-                    <p class="help-block text-danger"></p>
-                </div>
-            </div>
+<?php 
+    include "head.php";
+  ?>
+<body>
+<div id="main_container">
+  <?php
+        include "header.php";
+      ?>
+  <div id="main_content">
+    <div id="admin_header">
+      <div class="admin_addoffer_title">Adicionar Imóvel</div>
+      <div class="right_buttons">
+        <div class="right_button"><a href="admin.php">Voltar</a></div>
+      </div>
+    </div>
+    <div id="admin_header_border"></div>
+    <div class="add_tab">
+      <form class="form_contact" action="upload-imo.php" name="registreimo" enctype="multipart/form-data" method="post" id="imoForm" novalidate>
+                        <div class="row control-group">
+                            <div class="adminform_row_contact">
+                                <label class="adminleft">Transação:</label>
+                                 <label ><input type="checkbox" name="trans[]" id="trans" value="Venda">Venda</label>
+                                 <label ><input type="checkbox" name="trans[]" id="trans" value="Aluguel">Locação</label>
+                                 <label ><input type="checkbox" name="trans[]" id="trans" value="Aluguel Temporada">Locação Temporada</label>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
 
-            <div class="row control-group">
-            	<div class="adminform_row_contact">
-                	<label class="adminleft">Tipo de Imóvel:</label>
-                    	<select class="form-control" id="sel1" name="t_imo">
-                        	<option>Selecione</option>
-                            <option>Apartamento</option>
-                            <option>Kitchenette/Conjugado</option>
-                            <option>Loft</option>
-                            <option>Studio</option>
-                            <option>Casa padrão</option>
-                            <option>Terreno padrão</option>
-                            <option>Box/Garagem</option>
-                            <option>Casa comercial</option>
-                            <option>Casa condomínio</option>
-                            <option>Casa de vila</option>
-                            <option>Chácara</option>
-                            <option>Conjunto comercial</option>
-                            <option>Fazenda</option>
-                            <option>Flat</option>
-                            <option>Galpão/Depósito</option>
-                            <option>Haras</option>
-                            <option>Hotel</option>
-                            <option>Industria</option>
-                            <option>Loja Shopping</option>
-                            <option>Loja</option>
-                            <option>Loteamento</option>
-                            <option>Motel</option>
-                            <option>Pousada</option>
-                            <option>Prédio Inteiro</option>
-                            <option>Sítio</option>
-                        </select>
-                        <p class="help-block text-danger"></p>
-				</div>
-			</div>
+                        <div class="row control-group">
+                            <div class="adminform_row_contact">
+                                <label class="adminleft">Tipo de Imóvel:</label>
+                                <select class="form-control" id="sel1" name="t_imo">
+                                    <option>Selecione</option>
+                                    <option>Apartamento</option>
+                                    <option>Kitchenette/Conjugado</option>
+                                    <option>Loft</option>
+                                    <option>Studio</option>
+                                    <option>Casa padrão</option>
+                                    <option>Terreno padrão</option>
+                                    <option>Box/Garagem</option>
+                                    <option>Casa comercial</option>
+                                    <option>Casa condomínio</option>
+                                    <option>Casa de vila</option>
+                                    <option>Chácara</option>
+                                    <option>Conjunto comercial</option>
+                                    <option>Fazenda</option>
+                                    <option>Flat</option>
+                                    <option>Galpão/Depósito</option>
+                                    <option>Haras</option>
+                                    <option>Hotel</option>
+                                    <option>Industria</option>
+                                    <option>Loja Shopping</option>
+                                    <option>Loja</option>
+                                    <option>Loteamento</option>
+                                    <option>Motel</option>
+                                    <option>Pousada</option>
+                                    <option>Prédio Inteiro</option>
+                                    <option>Sítio</option>
+                                  </select>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
                         <div class="row control-group">
                             <div class="adminform_row_contact">
                                 <label class="adminleft">Subtipo de Imóvel:</label>
@@ -97,25 +97,23 @@
                         <div class="row control-group">
                             <div class="adminform_row_contact">
                                 <label class="adminleft">Estado:</label>
-                                <input type="text" class="form-control" placeholder="Estado" name="estado" id="estado" required data-validation-required-message="Por favor insira o Estado.">
-                                <!-- <select class="form-control" id="sel1" name="estado">
+                                <select class="form-control" id="sel1" name="estado">
                                     <option>Selecione</option>
                                     <option>RS</option>
                                     <option>SC</option>
                                     <option>PR</option>
-                               </select> -->
+                               </select>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="adminform_row_contact">
                                 <label class="adminleft">Cidade:</label>
-                                <input type="text" class="form-control" placeholder="Cidade" name="cidade" id="cidade" required data-validation-required-message="Por favor insira a Cidade.">
-                                <!--<select class="form-control" id="sel1" name="cidade">
+                                <select class="form-control" id="sel1" name="cidade">
                                     <option>Selecione</option>
                                     <option>Porto Alegre</option>
                                     <option>Atlântida</option>
-                               </select>-->
+                               </select>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -439,21 +437,21 @@
                             </div>
                         </div>
 
-					<br>
-					<div id="success"></div>
-					<div class="row">
-						<div class="form-group col-xs-12">
-							<button type="submit" value="upload" class="btn btn-success btn-lg">Cadastrar</button>
-						</div>
-					</div>
-				</form>
-    			</div>
-  			</div>
-  		<!-- end of main_content -->
-  		<?php
-        	include "footer.php";
-      	?>
-		</div>
-		<!-- end of main_container -->
-	</body>
+                        <br>
+                        <div id="success"></div>
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <button type="submit" value="upload" class="btn btn-success btn-lg">Cadastrar</button>
+                            </div>
+                        </div>
+                    </form>
+    </div>
+  </div>
+  <!-- end of main_content -->
+  <?php
+        include "footer.php";
+      ?>
+</div>
+<!-- end of main_container -->
+</body>
 </html>

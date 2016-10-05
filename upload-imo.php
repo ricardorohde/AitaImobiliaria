@@ -2,7 +2,7 @@
 header('Content-Type: text/html; charset=utf-8');
 $name = ''; $type = ''; $size = ''; $error = '';
 
-
+$envia = FALSE;
 #INICIA CONEXÃO COM O BANCO DE DADOS
 include "db-conection.php";
 
@@ -103,8 +103,6 @@ $SalaoJogos  = isset($_POST['SalaoJogos']) ? $_POST['SalaoJogos']  :NULL;
 $Sauna = isset($_POST['Sauna']) ? $_POST['Sauna']  :NULL;
 $Vestiario = isset($_POST['Vestiario']) ? $_POST['Vestiario']  :NULL;
 
-print_r($_POST);
-print_r($_FILES);
 
 #EXECUTA QUERY PARA SALVAR DADOS NO BANCO DE DADOS
 
@@ -287,85 +285,85 @@ if(empty($_FILES)){
 	#Cria diretório no sistema de arquivos.
 	
 	$createddir = mkdir($dir,0777, true);
-	/*
-	$servidor = "177.86.54.14";
-	$usuario = "aitaimoveis";
-	$senha = "nala2702";
-			$ftp = ftp_connect($servidor);
-		printf("FTP:".$ftp);
-		$login  = ftp_login($ftp, $usuario, $senha);
-		if($login){
-			printf("true");
-		}else{
-			printf("false");
-		}
-		printf("LOGIN".$login);
-	*/
-
-	foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
-    		    
-    	$imagename = $_FILES['files']['name'][$key];
-    	
-        $source = $_FILES['files']['tmp_name'][$key];
-        
-        $target = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$imagename;
-        #$target = $_SERVER['DOCUMENT_ROOT'].'/AitaImobiliaria/'.$dir.'/'.$imagename;
-        
-
-        if ($_FILES["files"]["error"] > 0) {
-                    $error = $_FILES["file"]["error"];
-                    print_r("entrei no if das files");
-            } 
-            else if (($_FILES["file"]["type"] == "image/gif") || 
-            ($_FILES["files"]["type"] == "image/jpeg") || 
-            ($_FILES["files"]["type"] == "image/png") || 
-            ($_FILES["files"]["type"] == "image/pjpeg")) {
-
-            	print_r("entrei no elseif das files");
-                    $url = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$imagename;
-
-                    $filename = compress_image($source, $url, 50);
-                    print_r($filename);
-                    $buffer = file_get_contents($target);
-                    print_r($buffer);
-
-                    /* Force download dialog... */
-                    #header("Content-Type: application/force-download");
-                    #header("Content-Type: application/octet-stream");
-                    #header("Content-Type: application/download");
-
-            /* Don't allow caching... */
-                    header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-
-                    /* Set data type, size and filename */
-                    header("Content-Type: application/octet-stream");
-                    header("Content-Transfer-Encoding: binary");
-                    header("Content-Length: " . strlen($buffer));
-                    header("Content-Disposition: attachment; filename=$url");
-
-                    /* Send our file... */
-                    echo $buffer;
-            }else {
-                    $error = "Uploaded image should be jpg or gif or png";
-            }
-
-
-    	$query_imagens_imoveis = "INSERT INTO imagens_imo
-											(id,
-											name,
-											dir,
-											imo)
-											VALUES
-											('$key',
-											'$imagename',
-											'$dir',
-											'$imoid')";
 	
-		$result_imagens = mysqli_query($conexao,$query_imagens_imoveis) or die(mysql_error());
+	$name = ''; $type = ''; $size = ''; $error = '';
+	function compress_image($source_url, $destination_url, $quality) {
+
+		$info = getimagesize($source_url);
+
+    		if ($info['mime'] == 'image/jpeg')
+        			$image = imagecreatefromjpeg($source_url);
+
+    		elseif ($info['mime'] == 'image/gif')
+        			$image = imagecreatefromgif($source_url);
+
+   		elseif ($info['mime'] == 'image/png')
+        			$image = imagecreatefrompng($source_url);
+
+    		imagejpeg($image, $destination_url, $quality);
+		return $destination_url;
+	}
+	
+		foreach ($_FILES['files']['tmp_name'] as $key => $tmp_name) {
+    		if ($_FILES["files"]["error"][$key] > 0) {
+        			$error = $_FILES["files"]["error"][$key];
+    		} 
+    		else if (($_FILES["files"]["type"][$key] == "image/gif") || 
+			($_FILES["files"]["type"][$key] == "image/jpeg") || 
+			($_FILES["files"]["type"][$key] == "image/png") || 
+			($_FILES["files"]["type"][$key] == "image/pjpeg")) {
+					
+					$imagename = $_FILES['files']['name'][$key];
+        			$url = $_SERVER['DOCUMENT_ROOT'].'/'.$dir.'/'.$imagename;
+
+        			$filename = compress_image($_FILES["files"]["tmp_name"][$key], $url, 50);
+        			$buffer = file_get_contents($url);
+        			
+        			if ($buffer!=None){
+        				$envia = TRUE;
+        			}
+					
+        			$query_imagens_imoveis = "INSERT INTO imagens_imo
+        			(id,
+        			name,
+        			dir,
+        			imo)
+        			VALUES
+        			('$key',
+        			'$imagename',
+        			'$dir',
+        			'$imoid')";
+        			
+        			$result_imagens = mysqli_query($conexao,$query_imagens_imoveis) or die(mysql_error());
+        			/* Force download dialog... */
+        			#header("Content-Type: application/force-download");
+        			#header("Content-Type: application/octet-stream");
+        			#header("Content-Type: application/download");
+
+			/* Don't allow caching... */
+        			#header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+
+        			/* Set data type, size and filename */
+        			#header("Content-Type: application/octet-stream");
+        			#header("Content-Transfer-Encoding: binary");
+        			#header("Content-Length: " . strlen($buffer));
+        			#header("Content-Disposition: attachment; filename=$url");
+
+        			/* Send our file... */
+        			#echo $buffer;
+        			
+    		}else {
+        			$error = "Uploaded image should be jpg or gif or png";
+    		}
+		}
+	
+
+
+    	
 
     
 	}
-}
+
 
 if($result_imoveis && $result_caracteristicas_imoveis && $envia && $result_imagens){
 	echo "<script type='javascript'>alert('Imóvel Cadastrado!');</script>";
@@ -387,7 +385,7 @@ if($result_imoveis && $result_caracteristicas_imoveis && $envia && $result_image
 		echo '<a href="www.mypage.com" onclick="window.history.go(-1); return false;"> Voltar </a>';
 		rollback($imoid);
 		rmdir($dir);
-	}else{
+	}elseif(!$result_imagens){
 		#echo "<script type='javascript'>alert('Imagens Imóvel Não Cadastrado!');</script>";
 		echo "Imagens Imóvel Não Cadastrado! -";
 		echo '<a href="www.mypage.com" onclick="window.history.go(-1); return false;"> Voltar </a>';
@@ -407,21 +405,5 @@ function rollback($did){
 		$result_imagens_imoveis = mysqli_query($conexao,$queryimagensdelete) or die(mysql_error());
 }
 
-function compress_image($source_url, $destination_url, $quality) {
-
-        $info = getimagesize($source_url);
-
-            if ($info['mime'] == 'image/jpeg')
-                    $image = imagecreatefromjpeg($source_url);
-
-            elseif ($info['mime'] == 'image/gif')
-                    $image = imagecreatefromgif($source_url);
-
-        elseif ($info['mime'] == 'image/png')
-                    $image = imagecreatefrompng($source_url);
-
-            imagejpeg($image, $destination_url, $quality);
-        return $destination_url;
-    }
 
 ?>

@@ -16,6 +16,7 @@
     		imagejpeg($image, $destination_url, $quality);
 		return $destination_url;
 	}
+	$time_start = microtime(true);
 	if ($_POST) {
 		foreach ($_FILES['files']['tmp_name'] as $key => $tmp_name) {
     		if ($_FILES["files"]["error"][$key] > 0) {
@@ -53,6 +54,9 @@
     		}
 		}
 	}
+	$time_finish = microtime(true);
+	$exec_time = $time_finish - $time_start;
+	print_r($exec_time);
 ?>
 <html>
     	<head>

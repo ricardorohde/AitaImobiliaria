@@ -1,0 +1,175 @@
+
+
+
+/*________________________________ Set-Up For Primary Color ___________________________*/
+
+	   /*_________ Content Primary Color ________*/
+
+.main_menu nav .nav>li.sub-menu-holder:after,.main_menu nav .nav>li>ul>li a:hover,.call_us a,#main_banner .rent-box .rent-content h4:nth-child(3),
+#main_banner .rent-box .rent-content ul li i,.properties_item .single_properties .properties_history li i,.recent_properties .single_properties .recent_properties_history ul li i,
+.testimonial .client_speach .owl-theme .owl-nav .owl-prev:hover:before,.testimonial .client_speach .owl-theme .owl-nav .owl-next:hover:before,.agent_people .single_agent .agent_contact>a i,
+.agent_people .single_agent .agent_contact>a:hover,footer .contact_info ul li:before,.properties_item2 .single_properties .properties_history li i,
+.properties_item2 .owl-carousel .owl-controls .owl-nav .owl-prev:hover:before,.properties_item2 .owl-carousel .owl-controls .owl-nav .owl-next:hover:before,.properties_item_two .single_properties .property_details h4,
+.properties_item_two .single_properties ul li i,.testimonial_two  .client_speach .owl-theme .owl-nav .owl-prev:hover:before,.testimonial_two  .client_speach .owl-theme .owl-nav .owl-next:hover:before,
+.properties_slider_style5 .item .content a,.free_advice .single_content .text a,.best_deal .single_properties .icon_holder,#main_slider_two .tparrows:before,.rent_properties .single_properties .image_holder .property_tag,
+.side_bar .our_agents .agents_details a i,.side_bar .our_agents .agents_details a:hover,.inner_section_title.style_two>ul li.back_home a,.inner_section_title.style_two>ul>li:last-child a.active,
+.property_type .single_properties .text .properties_history li i,.property_type .owl-controls .owl-nav .owl-prev:hover:before,.property_type .owl-controls .owl-nav .owl-next:hover:before,.page_indicator ul li a:hover,
+.page_indicator ul li.active a,.sidebar_style_two .preperty_search .input_checker input[type="checkbox"]:checked + label,.sidebar_style_two .preperty_search .input_checker input[type="checkbox"]:checked + label:before,
+.sidebar_style_two .brochure_download a:hover,.sidebar_style_two #loan_calculator .single_form label,.inner_section_title.style_two>ul>li:last-child a:hover,.specification_tab .panel-heading.active-panel h6 a,
+.specification_tab .panel-heading.active-panel h6 a:before,.single_gallery .floor_plans .single_image h6:hover,.single_gallery .contact_agent .agent_details .agent_contact>a i,.agent_and_agency_details .info p,
+.agent_and_agency_details .info ul li a i,.agency_listin_page_content .single_agency .info ul li a i,.fun_facts .fun_content .facts_item .item span,.testimonial_page .testimonial_item_single .client_history .name i,
+.testimonial_page .testimonial_item_single .client_history ul li,.inner_section_title>ul li.active, .inner_section_title>ul li.active a, .inner_section_title>ul li a:hover,.faq_item .single_question .icon_holder .icon,
+.faq_item .single_question .text a:hover,.loan_tab .tab-pane .apply_loan_form h6 i,.loan_tab .tab-pane .apply_loan_form p,.register_page .register_form .login a,
+.register_page .register_form .login .single_checkbox input[type="checkbox"]:checked + label:before, .register_page .register_form .register .single_checkbox input[type="checkbox"]:checked + label:before,
+.map_page_properties .text .properties_history li i,.blog_grid_view .blog_single_grid .post>a:hover,.blog_grid_view .blog_single_grid>ul li i,.blog_sidebar .blog_categories ul li a:hover,
+.blog_sidebar .sidebar_latest_news .news_single .text ul li i,.blog_sidebar .twitter_widget ul li a,.blog_sidebar .twitter_widget ul li:before,.blog_post_meta .post>ul li i,.blog_post_meta .post_text p span,
+.post_wrapper .share_box .indicator ul li a:hover,.post_wrapper .commment_area .single_comment a.reply,.gallery_wrapper .gallery_menu li.active, .gallery_wrapper .gallery_menu li.is-checked,
+.gallery_item_container .single_item .overlay .link a,.gallery_wrapper .gallery_text .single_item .title i,.similar_properties .single_item .overlay .link a,.single_gallery .floor_plans .single_image:hover h6 {
+	color:#f0c11d;
+}
+
+
+
+
+	   /*_______ Background for primary color ______*/
+
+#top_header .top_header_right .icon_header li,
+.home3 .bottom_header .social_icon li,.post_wrapper .share_box .share_links ul li {
+	background: linear-gradient(to right, #e9bb1a 0%,#e9bb1a 50%,#e5b718 50%,#e5b718 50%,#e5b718 100%);
+}
+
+
+#top_header,.main_menu nav .nav>li:hover,.main_menu nav .nav>li:focus,.main_menu a.amenities:hover,.call_us p span,#main_banner .rent-box .rent-content .title-rent a,
+#top_header .top_header_right>.dropdown ul,.find_home,.ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus,
+.ui-datepicker .ui-datepicker-header,.ui-state-active, .ui-widget-content .ui-state-active,.real_estate .text a,.properties_item .single_properties span.property_tag,
+.recent_properties .single_properties .recent_properties_history a,.testimonial .slider #myCarousel .carousel-indicators li.active,.testimonial .client_speach #client-slider a,
+.agent_people .single_agent .agent_image .agent_name .button a,.agent_people .single_agent .agent_contact ul li:hover,.agent_people .single_agent .agent_contact ul li:focus,
+.find_home_2 h4.table_title,.find_home_2 .table_content .selectmenu_type_3 button,.properties_item2 .single_properties .properties_name a.sale:hover,.properties_item2 .single_properties .properties_name a.rent,
+.properties_item_two .single_properties>span.rent,.recent_properties_two .nav-tabs li:hover a, .recent_properties_two .nav-tabs li.active a, .recent_properties_two .nav-tabs li.focus a,.best_deal .single_properties>span.rent,
+.best_deal .text ul,#main_slider_two .tparrows:hover,.home_top_wrapper .top_header_right>.dropdown ul,.home3 .bottom_header,.properties_search .nav-tabs li a,.search_category .search_form .selectmenu_type_3 button:hover,
+.fixed_style_three,.sidebar_properties .slider_box .text a,.property_type .single_properties .text>span,.property_type .single_properties>span,.sidebar_style_two .preperty_search .search,
+.single_gallery .slider_wrapper .owl-theme .owl-nav [class*=owl-]:hover,.single_gallery .property_address .location ul,.single_gallery .public_facilities ul li i,.send_message button,.agency_listin_page_content .single_agency .info span,
+.about_history .content:before,.pricing_plan_table .single_price_table a,.loan_tab .tab_nav_holder ul li a:before,.loan_tab .tab-pane button,.register_page .register_form form button,.map_page_properties .img_holder span,
+.map_page_properties .text>span,.blog_grid_view .blog_single_grid .post>span,.blog_sidebar .search_keywords button,.blog_sidebar .blog_categories ul li a:before,.blog_list_view .blog_single_item_list .post>a,.blog_post_meta .post .date,
+.blog_sidebar .tag_cloud ul li a:hover,.post_wrapper .single_blog_post .read_more,.gallery_wrapper .page_indicator>a:hover,.gallery_wrapper a.load_more,.blog_post_meta .post_text .decor span,.rent_properties .single_properties:hover .properties_name,
+.switcher .switch_menu h5.title,.contact_us_content .send_message #error button, .contact_us_content .send_message #success button {
+	background: #f0c11d;
+}
+
+.metis .tp-bullet-image:before,.free_advice .overlay {
+	background: rgba(240,193,29,0.8);
+}
+
+.popular_areas .area_gallery .img_holder .overlay,
+.newsletter .overlay,.properties_item2 .single_properties .properties_details .img_holder .overlay,
+.properties_item2 .single_properties .properties_details .author_image .overlay,
+.properties_slider_banner .single_properties .author_img .overlay,
+.property_type .single_properties .img_holder .overlay,
+.single_gallery .slider_wrapper .single-gallery-carousel-thumbnail-box .item .overlay,
+.gallery_item_container .single_item .overlay,.similar_properties .single_item .overlay {
+	background: rgba(240,193,29,0.9);
+}
+#polyglotLanguageSwitcher ul.dropdown,.onoffswitch-checkbox:checked + .onoffswitch-label,.onoffswitch-label {
+	background-color: #f0c11d; 
+}
+
+.pricing_plan_table .single_price_table h3 {
+	background: #e9bb1a;
+}
+
+@media (max-width: 767px) {
+	.main_menu .navbar-toggle,.main_menu .navbar-nav,.main_menu nav .nav>li>a:hover,
+	.main_menu nav .nav>li>a:focus,.main_menu ul li.dropdown>.sub-menu .fa-bars,
+	.home3 .bottom_header ul li.dropdown>.sub-menu .fa-bars {
+	    background: #f0c11d !important;
+	}
+
+}
+
+
+
+
+	   	/*_______ Border for Primary color ______*/
+
+.main_menu nav .nav ul.sub-menu,.main_menu nav .nav ul.sub-sub-menu,.ui-state-active, .ui-widget-content .ui-state-active,.testimonial .slider #myCarousel .carousel-indicators li,
+.testimonial .slider #myCarousel .carousel-indicators li.active {
+	border:1px solid #f0c11d;
+}
+.register_page .register_form form {
+	border-top: 2px solid #f0c11d;
+}
+.blog_post_meta .post .date:after {
+	border-top-color:#f0c11d;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label,
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+	border-color:#f0c11d;
+}
+
+
+
+/*_______________________________________ Set-Up For Secondary Color ________________________________*/
+
+
+
+
+	   /*_________ Content Secondary Color ________*/
+#main_banner .rent-box .rent-content h4:nth-child(1),.properties_item .single_properties .text .title span,.recent_properties .owl-theme .owl-nav .owl-prev:hover:before,
+.recent_properties .owl-theme .owl-nav .owl-next:hover:before,.testimonial .client_speach p:before,.testimonial .client_speach #client-slider span,.agent_people .single_agent .agent_image .agent_name .name_holder i,
+footer .useful_link ul li a:hover,footer .featured_properties_footer .item .text span,footer .bottom_footer .text p a:hover,footer .bottom_footer .footer_nav ul li a:hover,
+.properties_item2 .single_properties .properties_name .title span,.properties_item2 .single_properties .properties_details .properties_title>span,.properties_item_two .single_properties .property_details>span,
+.testimonial_two .client_speach .item .img_holder .client_name span,footer .contact_info ul li a:hover,.home_top_wrapper header .top_header .top_header_left a:hover,.properties_slider_banner .single_properties .properties_name>span,
+.rent_properties .single_properties .properties_name h4,.sidebar_properties .carousel-control:hover,.sidebar_properties .slider_box .text h5,.reduced_properties .item_wrapper .itme .text h5,
+.property_type .single_properties .text .properties_title span,.sidebar_testimonial .slider_box .title i,.single_gallery .contact_agent .agent_details .agent_info .name_holder i,.map_page_properties .text .properties_title span,
+.post_wrapper .commment_area .single_comment a.reply:hover {
+	color:#e74c3c;
+}
+
+
+
+	   /*_______ Background for Secondary color ______*/
+
+.tooltipster-default,#top_header .top_header_right .icon_header li:hover,#top_header .top_header_right .icon_header li:focus,.main_menu a.amenities,#main_banner .rent-box .rent-content .title-rent a:hover,
+#main_banner .metis .tp-bullet-title,#top_header .top_header_right>.dropdown ul li:hover,#polyglotLanguageSwitcher ul.dropdown li:hover,.find_home form .search,.real_estate .text a:hover,.main_title:before,
+.properties_item .single_properties span.property_tag_top,.recent_properties .single_properties .recent_properties_history a:hover, .recent_properties .single_properties .recent_properties_history a:focus,
+.testimonial .client_speach #client-slider a:hover,.agent_people .single_agent .agent_image .agent_name .button a:hover, .agent_people .single_agent .agent_image .agent_name .button a:focus,
+.popular_areas .area_gallery .img_holder .overlay a,.newsletter form .input_group button,.main_title h2:before,footer .footer_title h4:before,footer .main_footer .about_estate ul li:hover,
+footer .main_footer .about_estate ul li:focus,.main-title-center h2:before,.home2 .call_us,.find_home_2 .table_content .selectmenu_type_3 button:hover,.properties_item2 .single_properties .properties_name a.sale,
+.properties_item2 .single_properties .properties_name a.rent:hover,.properties_item_two .single_properties>span.sale,.free_advice h2:after,.free_advice .single_content .text a:hover,
+.best_deal .single_properties>span.sale,.free_advice .single_content:hover .text a,.home_top_wrapper .top_header_right>.dropdown ul li:hover,.home3 .bottom_header .social_icon li:hover,
+.home3 .bottom_header .social_icon li:focus,.search_category .search_form .selectmenu_type_3 button,.main_title .dropdown ul li:hover,.rent_properties .single_properties:hover .property_tag,.main_title2 h3:before,
+.sidebar_properties .slider_box .text a:hover,.sidebar_style_two .preperty_search .search:hover,.main_title2 h2:before,.send_message button:hover,.property_type .single_properties>span.top,
+.pricing_plan_table .single_price_table:hover a,.loan_tab .tab-pane button:hover,.register_page .register_form form button:hover,.blog_sidebar .search_keywords button:hover,.main_title2 h6:before,
+.blog_list_view .blog_single_item_list .post>a:hover,.post_wrapper .single_blog_post:hover .read_more,.post_wrapper .share_box .share_links ul li:hover,.gallery_wrapper a.load_more:hover,
+.switcher .switch_btn button,.onoffswitch-label:before  {
+	background: #e74c3c;
+}
+
+.home2 .call_us p span,.pricing_plan_table .single_price_table:hover h3 {
+	background: #d74031;
+}
+
+@media (max-width: 767px) {
+	.main_menu nav .nav>li>a:hover,.main_menu nav .nav>li>a:focus,
+	.main_menu ul li.dropdown .fa-bars:hover,.main_menu ul li.dropdown .fa-bars:focus,
+	.home3 .bottom_header ul li.dropdown .fa-bars:hover,.home3 .bottom_header ul li.dropdown .fa-bars:focus,
+	.home3 .bottom_header ul li.dropdown>.sub-menu .fa-bars:hover,.home3 .bottom_header ul li.dropdown>.sub-menu .fa-bars:focus {
+	    background: #e74c3c !important;
+	}
+
+}
+
+	   	/*_______ Border for Secondary color ______*/
+
+.tooltipster-default {
+	border:1px solid #e74c3c;
+}
+.home2 .main_menu {
+	border-bottom: 5px solid #e74c3c;	
+}
+#main_banner .metis .tp-bullet-title:after {
+    border-color: rgba(156,89,184,1) transparent transparent transparent;
+}
+.main_title:before {
+	border-bottom: 5px solid #d74031;
+}
